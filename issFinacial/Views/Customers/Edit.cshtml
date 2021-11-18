@@ -1,0 +1,324 @@
+﻿@model issFinacial.Models.Customer
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<script type="text/javascript" src="~/assets/webcamjs/webcam.min.js"></script>
+<style>
+
+    #my_camera {
+        width: 300px;
+        height: 230px;
+        border: 1px solid black;
+    }
+</style>
+<div class="page-header page-header-light">
+    <div class="page-header-content header-elements-lg-inline">
+        <div class="page-title d-flex">
+            <h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Customer</span> - Edit</h4>
+            <a href="#" class="header-elements-toggle text-body d-lg-none"><i class="icon-more"></i></a>
+        </div>
+        <div class="header-elements d-none">
+            <div class="d-flex justify-content-center">
+                <a href="#" class="btn btn-link btn-float font-size-sm font-weight-semibold text-body">
+                    <i class="icon-bars-alt text-pink"></i>
+                    <span>Statistics</span>
+                </a>
+                <a href="#" class="btn btn-link btn-float font-size-sm font-weight-semibold text-body">
+                    <i class="icon-calculator text-pink"></i>
+                    <span>Invoices</span>
+                </a>
+                <a href="#" class="btn btn-link btn-float font-size-sm font-weight-semibold text-body">
+                    <i class="icon-calendar5 text-pink"></i>
+                    <span>Schedule</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="breadcrumb-line breadcrumb-line-light header-elements-lg-inline">
+        <div class="d-flex">
+            <div class="breadcrumb">
+                <a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Dashboard</a>
+                <span class="breadcrumb-item active">Customer</span>
+            </div>
+            <a href="#" class="header-elements-toggle text-body d-lg-none"><i class="icon-more"></i></a>
+        </div>
+        <div class="header-elements d-none">
+            <div class="breadcrumb justify-content-center">
+                <a href="#" class="breadcrumb-elements-item">
+                    <i class="icon-comment-discussion mr-2"></i>
+                    Support
+                </a>
+                <div class="breadcrumb-elements-item dropdown p-0">
+                    <a href="#" class="breadcrumb-elements-item dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-gear mr-2"></i>
+                        Settings
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a href="#" class="dropdown-item"><i class="icon-user-lock"></i> Account security</a>
+                        <a href="#" class="dropdown-item"><i class="icon-statistics"></i> Analytics</a>
+                        <a href="#" class="dropdown-item"><i class="icon-accessibility"></i> Accessibility</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item"><i class="icon-gear"></i> All settings</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+
+
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="card">
+                    <div class="card-header header-elements-inline">
+                        <h5 class="card-title">New Customer</h5>
+                        <div class="header-elements">
+                            <div class="list-icons">
+                                @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-primary" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body" style="border: 1px solid #0c5ade;">
+                        <div class="title">Customer Details</div><br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+
+                                    <div class="form-group col-md-4">
+                                        <label></label>
+                                        @Html.EditorFor(model => model.siNo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Id No" } })
+                                        @Html.ValidationMessageFor(model => model.siNo, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label></label>
+                                        @Html.EditorFor(model => model.customerName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Customer Name" } })
+                                        @Html.ValidationMessageFor(model => model.customerName, "", new { @class = "text-danger" })
+                                    </div>
+
+
+                                    @*<div class="form-group col-md-4">
+                                        <label></label>
+                                        @Html.EditorFor(model => model.customerRelation, new { htmlAttributes = new { @class = "form-control", @placeholder = "Customer Relation Name" } })
+                                        @Html.ValidationMessageFor(model => model.customerRelation, "", new { @class = "text-danger" })
+                                    </div>*@
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-4">
+                                        <label></label>
+                                        @Html.EditorFor(model => model.customerAddress, new { htmlAttributes = new { @class = "form-control", @placeholder = "customer Address" } })
+                                        @Html.ValidationMessageFor(model => model.customerAddress, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    @*<div class="form-group col-md-4">
+                                            <label></label>
+                                            @Html.EditorFor(model => model.customerAddressTamil, new { htmlAttributes = new { @class = "form-control", @placeholder = "customer Address-Tamil" } })
+                                            @Html.ValidationMessageFor(model => model.customerAddressTamil, "", new { @class = "text-danger" })
+                                        </div>*@
+                                    <div class="form-group col-md-4">
+                                        <label></label>
+                                        @Html.EditorFor(model => model.permanantAddress, new { htmlAttributes = new { @class = "form-control", @placeholder = "Permanant Address" } })
+                                        @Html.ValidationMessageFor(model => model.permanantAddress, "", new { @class = "text-danger" })
+                                    </div>
+                                    @*<div class="form-group col-md-4">
+                                            <label></label>
+                                            @Html.EditorFor(model => model.permanantAddressTamil, new { htmlAttributes = new { @class = "form-control", @placeholder = "Permanant Address-Tamil" } })
+                                            @Html.ValidationMessageFor(model => model.permanantAddressTamil, "", new { @class = "text-danger" })
+                                        </div>*@
+                                    <div class="form-group col-md-4">
+                                        <label></label>
+                                        @Html.DropDownList("areaNameEnglishId", null, htmlAttributes: new { @class = "form-control", @placeholder = "Area Name" } )
+                                       
+                                    </div>
+                                    @*<div class="form-group col-md-4">
+                                            <label></label>
+                                            @Html.EditorFor(model => model.areaNameTamil, new { htmlAttributes = new { @class = "form-control", @placeholder = "Area Name-Tamil" } })
+                                            @Html.ValidationMessageFor(model => model.areaNameTamil, "", new { @class = "text-danger" })
+                                        </div>*@
+                                    <div class="form-group col-md-4">
+                                        <label></label>
+                                        @Html.EditorFor(model => model.contactNo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Contact No" } })
+                                        @Html.ValidationMessageFor(model => model.contactNo, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <div class="thumb thumb-rounded thumb-slide">
+                                            <label>Customer Image</label>
+
+                                            <img id="user_img" class="uk-file-upload" style="height:125px;width:175px;border:thick" />
+                                            <br />
+                                            <br />
+                                            <input type=button value="Take Snapshot" onClick="take_snapshot()">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <div class="thumb thumb-rounded thumb-slide">
+                                            <label>Item Image</label>
+                                            <img id="itemImage" class="uk-file-upload" style="height:125px;width:175px;border:thick" />
+                                            <br />
+                                            <br />
+                                            <input type=button value="Take Snapshot" onClick="Item_snapshot()">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <div class="thumb thumb-rounded thumb-slide">
+                                            <label>Customer Sign</label>
+                                            <img id="signImage" class="uk-file-upload" style="height:125px;width:175px;border:thick" />
+                                            <br />
+                                            <br />
+                                            <input type=button value="Take Snapshot" onClick="Sign_snapshot()">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="thumb thumb-rounded thumb-slide">
+                                        <label>Camera Preview</label>
+                                        <div id="my_camera"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="card-body" style="border: 1px solid #0c5ade;margin-top:10px">
+                        <div class="subtitle">Nominee Detail</div>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label></label>
+
+                                @Html.EditorFor(model => model.introduceName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Introduce Name" } })
+                                @Html.ValidationMessageFor(model => model.introduceName, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label></label>
+
+                                @Html.EditorFor(model => model.identityProof, new { htmlAttributes = new { @class = "form-control", @placeholder = "Identity Proof" } })
+                                @Html.ValidationMessageFor(model => model.identityProof, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label></label>
+                                @Html.EditorFor(model => model.identityNumber, new { htmlAttributes = new { @class = "form-control", @placeholder = "Identity Number" } })
+                                @Html.ValidationMessageFor(model => model.identityNumber, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label></label>
+                                @Html.EditorFor(model => model.customerType, new { htmlAttributes = new { @class = "form-control", @placeholder = "Customer Type" } })
+                                @Html.ValidationMessageFor(model => model.customerType, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label>Date of Join</label>
+                                @Html.TextBoxFor(m => m.dateofJoin, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label></label>
+
+                                @Html.EditorFor(model => model.nomineeName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nominee Name" } })
+                                @Html.ValidationMessageFor(model => model.nomineeName, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label></label>
+
+                                @Html.EditorFor(model => model.nomineeAddress, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nominee Address" } })
+                                @Html.ValidationMessageFor(model => model.nomineeAddress, "", new { @class = "text-danger" })
+                            </div>
+
+
+                            <div class="form-group col-md-4">
+                                <label></label>
+                                @Html.EditorFor(model => model.nomineeNumber, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nominee Number" } })
+                                @Html.ValidationMessageFor(model => model.nomineeNumber, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label></label>
+
+                                @Html.EditorFor(model => model.remark, new { htmlAttributes = new { @class = "form-control", @placeholder = "Remark" } })
+                                @Html.ValidationMessageFor(model => model.remark, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group col-md-3">
+                                    <div class="thumb thumb-rounded thumb-slide">
+                                        <label>Nominee Image</label>
+                                        <img id="user_img" class="uk-file-upload" style="height:125px;width:175px;border:thick" />
+                                        <br />
+                                        <br />
+                                        <a class="uk-file-upload"><input id="file_upload" type="file" name="photo" onchange="show(this)"></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group col-md-3">
+                                    <div class="thumb thumb-rounded thumb-slide">
+                                        <label>Nominee Sign</label>
+                                        <img id="user_img" class="uk-file-upload" style="height:125px;width:175px;border:thick" />
+                                        <br />
+                                        <br />
+                                        <a class="uk-file-upload"><input id="file_upload" type="file" name="photo" onchange="show(this)"></a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="text-right">
+                            <button type="submit" value="Edit" class="btn btn-success">Submit</button>
+                            @Html.ActionLink("Cancel", "Index", null, htmlAttributes: new { @class = "btn btn-primary" })
+                        </div>
+                    </div>
+                </div>
+
+            }
+
+        </div>
+    </div>
+</div>
+<script language="JavaScript">
+    $(function () {
+        Webcam.set({
+            width: 320,
+            height: 240,
+            image_format: 'jpeg',
+            jpeg_quality: 90
+        });
+        Webcam.attach('#my_camera');
+    });
+    function take_snapshot() {
+        Webcam.snap(function (data_uri) {
+            $('#user_img').attr("src", data_uri);
+        });
+    }
+    function Item_snapshot() {
+        Webcam.snap(function (data_uri) {
+            $('#itemImage').attr("src", data_uri);
+        });
+    }
+    function Sign_snapshot() {
+        Webcam.snap(function (data_uri) {
+            $('#signImage').attr("src", data_uri);
+        });
+    }
+</script>

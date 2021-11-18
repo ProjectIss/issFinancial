@@ -1,0 +1,232 @@
+﻿@model IEnumerable<issFinacial.Models.LoanEntry>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="page-header page-header-light">
+    <div class="page-header-content header-elements-lg-inline">
+        <div class="page-title d-flex">
+            <h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Loan Entry</span> - Index</h4>
+            <a href="#" class="header-elements-toggle text-body d-lg-none"><i class="icon-more"></i></a>
+        </div>
+        <div class="header-elements d-none">
+            <div class="d-flex justify-content-center">
+                <a href="#" class="btn btn-link btn-float font-size-sm font-weight-semibold text-body">
+                    <i class="icon-bars-alt text-pink"></i>
+                    <span>Statistics</span>
+                </a>
+                <a href="#" class="btn btn-link btn-float font-size-sm font-weight-semibold text-body">
+                    <i class="icon-calculator text-pink"></i>
+                    <span>Invoices</span>
+                </a>
+                <a href="#" class="btn btn-link btn-float font-size-sm font-weight-semibold text-body">
+                    <i class="icon-calendar5 text-pink"></i>
+                    <span>Schedule</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="breadcrumb-line breadcrumb-line-light header-elements-lg-inline">
+        <div class="d-flex">
+            <div class="breadcrumb">
+                <a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Dashboard</a>
+                <span class="breadcrumb-item active">Loan Entry</span>
+            </div>
+            <a href="#" class="header-elements-toggle text-body d-lg-none"><i class="icon-more"></i></a>
+        </div>
+        <div class="header-elements d-none">
+            <div class="breadcrumb justify-content-center">
+                <a href="#" class="breadcrumb-elements-item">
+                    <i class="icon-comment-discussion mr-2"></i>
+                    Support
+                </a>
+                <div class="breadcrumb-elements-item dropdown p-0">
+                    <a href="#" class="breadcrumb-elements-item dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-gear mr-2"></i>
+                        Settings
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a href="#" class="dropdown-item"><i class="icon-user-lock"></i> Account security</a>
+                        <a href="#" class="dropdown-item"><i class="icon-statistics"></i> Analytics</a>
+                        <a href="#" class="dropdown-item"><i class="icon-accessibility"></i> Accessibility</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item"><i class="icon-gear"></i> All settings</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header header-elements-inline">
+                <h5 class="card-title">Loan Entry</h5>
+                <div class="header-elements">
+                    <div class="list-icons">
+                        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+                        @*<a href="/Users/Create" class="btn btn-primary">Add</a>*@
+                    </div>
+                </div>
+            </div>
+            <table class="table">
+                <tr>
+                    <th>
+                        Loan No
+                    </th>
+                    <th>
+                       Customer Code
+                    </th>
+                    <th>
+                       Customer Name
+                    </th>
+                    <th>
+                        Father Name
+                    </th>
+                    @*<th>
+                        @Html.DisplayNameFor(model => model.address)
+                    </th>*@
+                    <th>
+                       Area Name
+                    </th>
+                    @*<th>
+            @Html.DisplayNameFor(model => model.identityproof)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.loanDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.billNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.itemName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.itemType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gramValue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.queality)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.grossWeight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.netWeight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.itemValue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.totalGrams)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.value)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.principle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.intrest)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.intrestAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.deducation)
+        </th>*@
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.code)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fatherName)
+                    </td>
+                    @*<td>
+            @Html.DisplayFor(modelItem => item.address)
+        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.areaName)
+                    </td>
+                    @*<td>
+            @Html.DisplayFor(modelItem => item.identityproof)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.loanDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.billNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.itemName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.itemType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.gramValue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.queality)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.grossWeight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.netWeight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.itemValue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.totalGrams)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.value)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.principle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.intrest)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.intrestAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.deducation)
+        </td>*@
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                    </td>
+                </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>

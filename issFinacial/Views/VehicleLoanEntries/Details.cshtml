@@ -1,0 +1,562 @@
+﻿@model issFinacial.Models.VehicleLoanEntry
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+
+
+<div class="page-header page-header-light">
+    <div class="page-header-content header-elements-lg-inline">
+        <div class="page-title d-flex">
+            <h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Vehicle Loan</span> - Detail</h4>
+            <a href="#" class="header-elements-toggle text-body d-lg-none"><i class="icon-more"></i></a>
+        </div>
+        <div class="header-elements d-none">
+            <div class="d-flex justify-content-center">
+                <a href="#" class="btn btn-link btn-float font-size-sm font-weight-semibold text-body">
+                    <i class="icon-bars-alt text-pink"></i>
+                    <span>Statistics</span>
+                </a>
+                <a href="#" class="btn btn-link btn-float font-size-sm font-weight-semibold text-body">
+                    <i class="icon-calculator text-pink"></i>
+                    <span>Invoices</span>
+                </a>
+                <a href="#" class="btn btn-link btn-float font-size-sm font-weight-semibold text-body">
+                    <i class="icon-calendar5 text-pink"></i>
+                    <span>Schedule</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="breadcrumb-line breadcrumb-line-light header-elements-lg-inline">
+        <div class="d-flex">
+            <div class="breadcrumb">
+                <a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Dashboard</a>
+                <span class="breadcrumb-item active">Vehicle Loan</span>
+            </div>
+            <a href="#" class="header-elements-toggle text-body d-lg-none"><i class="icon-more"></i></a>
+        </div>
+        <div class="header-elements d-none">
+            <div class="breadcrumb justify-content-center">
+                <a href="#" class="breadcrumb-elements-item">
+                    <i class="icon-comment-discussion mr-2"></i>
+                    Support
+                </a>
+                <div class="breadcrumb-elements-item dropdown p-0">
+                    <a href="#" class="breadcrumb-elements-item dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-gear mr-2"></i>
+                        Settings
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a href="#" class="dropdown-item"><i class="icon-user-lock"></i> Account security</a>
+                        <a href="#" class="dropdown-item"><i class="icon-statistics"></i> Analytics</a>
+                        <a href="#" class="dropdown-item"><i class="icon-accessibility"></i> Accessibility</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item"><i class="icon-gear"></i> All settings</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+
+
+<div class="row">
+    <div class="col-md-12">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="card">
+
+            <div class="card-header header-elements-inline">
+                <h5 class="card-title">Vehicle Loan</h5>
+                <div class="header-elements">
+                    <div class="list-icons">
+
+                        @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-primary" })
+                        @*@Html.ActionLink("Edit", "Edit", new { }, new { @class = "btn btn-success" })*@
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            <label>Agent</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.agent.name)
+                        </dd>
+
+                        <dt>
+                            <label>Area</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.area.name)
+                        </dd>
+
+                        <dt>
+                            <label>Broker Id</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.broker.name)
+                        </dd>
+
+                        <dt>
+                            <label>Broker Name</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.brokerName.name)
+                        </dd>
+
+                        <dt>
+                            <label>Customer Id</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Customer.id)
+                        </dd>
+
+                        <dt>
+                            <label>Customer Name</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.customerName.customerName)
+                        </dd>
+
+                        @*<dt>
+                        <label>Area Name</label>
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.areaName)
+                    </dd>*@
+
+                        <dt>
+                            <label>Insurance</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Insurance.name)
+                        </dd>
+
+                        <dt>
+                            <label>Share Holdere</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.shareHoldere.name)
+                        </dd>
+
+                        <dt>
+                            <label>Vehicle</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.vehicle.name)
+                        </dd>
+
+                        <dt>
+                            <label>Father Name</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.fatherName)
+                        </dd>
+
+                        <dt>
+                            <label>Address</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.address)
+                        </dd>
+
+                        <dt>
+                            <label>Phone No</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.phoneNo)
+                        </dd>
+
+                        <dt>
+                            <label>Age</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.age)
+                        </dd>
+
+                        @*<dt>
+                        <label>Agent Name</label>
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.agentName)
+                    </dd>*@
+
+                        <dt>
+                            <label>Conduct Person</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.conductPerson)
+                        </dd>
+
+                        <dt>
+                            <label>Broker Address</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.brokerAddress)
+                        </dd>
+
+                        <dt>
+                            <label>Broker Phone No</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.brokerPhoneNo)
+                        </dd>
+
+
+
+                        <dt>
+                            <label>Guardian Name</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.guardianName)
+                        </dd>
+
+                        <dt>
+                            <label>Guardian Address</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.guardianAddress)
+                        </dd>
+
+                        <dt>
+                            <label>Guardian Phone No</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.guardianPhoneNo)
+                        </dd>
+
+                        <dt>
+                            <label>Date of Agreement</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.dateofAgreement)
+                        </dd>
+
+                        <dt>
+                            <label>Date Of Firstdue</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.dateOfDue)
+                        </dd>
+
+                        <dt>
+                            <label>Advance EMI</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.advanceEmi)
+                        </dd>
+
+                        <dt>
+                            <label>Payment Mode</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.paymentMode)
+                        </dd>
+
+                        <dt>
+                            <label>Check No</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.checkNo)
+                        </dd>
+
+                        <dt>
+                            <label> Loan Amount</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.amountOfLoan)
+                        </dd>
+
+                        <dt>
+                            <label>Rate Of Intrest(%)</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.rateOfIntrestperentage)
+                        </dd>
+
+                        <dt>
+                            <label>Number Of Installments</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.numberOfInstallments)
+                        </dd>
+
+                        <dt>
+                            <label> Intrest Amount</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.amountOfIntrest)
+                        </dd>
+
+                        <dt>
+                            <label>Total Loan Amount</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.totalloanAmount)
+                        </dd>
+
+                        <dt>
+                            <label>Due Amount</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.dueAmount)
+                        </dd>
+
+                        <dt>
+                            <label>Document Amount</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.documentAmount)
+                        </dd>
+
+                        <dt>
+                            <label>Commision Amount</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.commisionAmount)
+                        </dd>
+
+                        <dt>
+                            <label>Policy No</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.policyNo)
+                        </dd>
+
+                        <dt>
+                            <label>Policy Amount</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.policyAmount)
+                        </dd>
+
+                        <dt>
+                            <label>Premium Amount</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.premiumAmount)
+                        </dd>
+
+                        <dt>
+                            <label>Insured No</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.insuredNo)
+                        </dd>
+
+                        <dt>
+                            <label>Insure Expiry On</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.insureExpiryOn)
+                        </dd>
+
+                        <dt>
+                            <label>Policy Received</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.policyReceived)
+                        </dd>
+
+                        <dt>
+                            <label>Vehicle No</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.vehicleNo)
+                        </dd>
+
+                        <dt>
+                            <label>Engine No</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.engineNo)
+                        </dd>
+
+                        <dt>
+                            <label>Chase No</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.chaseNo)
+                        </dd>
+
+                        <dt>
+                            <label>Registered At</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.registeredAt)
+                        </dd>
+
+                        <dt>
+                            <label>Registered Date</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.registeredDate)
+                        </dd>
+
+                        <dt>
+                            <label>Rto Office Ref NO</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.rtoOfficeRefNO)
+                        </dd>
+
+                        <dt>
+                            <label>Endosment On</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.endosmentOn)
+                        </dd>
+
+                        <dt>
+                            <label>Document With</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.documentWith)
+                        </dd>
+
+                        <dt>
+                            <label>Vehicle Name</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.vehicleName)
+                        </dd>
+
+                        <dt>
+                            <label>Vehicle Color</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.vehicleColor)
+                        </dd>
+
+                        <dt>
+                            <label>Endosment Done</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.endosmentDone)
+                        </dd>
+
+                        <dt>
+                            <label>Duplicate Key Recd</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.duplicateKeyRecd)
+                        </dd>
+
+                        <dt>
+                            <label>Policy Circle</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.policyCircle)
+                        </dd>
+
+                        <dt>
+                            <label>Vehicle Type</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.vehicleType)
+                        </dd>
+
+                        <dt>
+                            <label>Tax Expiry Date</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.taxExpiryDate)
+                        </dd>
+
+                        <dt>
+                            <label>Permit Expiry Date</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.permitExpiryDate)
+                        </dd>
+
+                        <dt>
+                            <label>Fc Expiry Date</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.fcExpiryDate)
+                        </dd>
+
+                        <dt>
+                            <label>Insurance Expity Date</label>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.insuranceExpityDate)
+                        </dd>
+
+                    </dl>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</div>
+
