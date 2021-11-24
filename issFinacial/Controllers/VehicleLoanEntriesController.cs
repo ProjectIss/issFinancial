@@ -18,7 +18,7 @@ namespace issFinacial.Controllers
         // GET: VehicleLoanEntries
         public async Task<ActionResult> Index()
         {
-            var vehicleLoanEntries = db.VehicleLoanEntries.Include(v => v.agent).Include(v => v.area).Include(v => v.broker).Include(v => v.brokerName).Include(v => v.Customer).Include(v => v.customerName).Include(v => v.Insurance).Include(v => v.shareHoldere).Include(v => v.vehicle);
+            var vehicleLoanEntries = db.VehicleLoanEntries.Include(v => v.agent).Include(v => v.area).Include(v => v.broker).Include(v => v.brokerName).Include(v => v.Customer).Include(v => v.customerName).Include(v => v.Insurance).Include(v => v.shareHoldere).Include(v => v.vehicle).OrderByDescending(x => x.id);
             return View(await vehicleLoanEntries.ToListAsync());
         }
 
@@ -63,6 +63,59 @@ namespace issFinacial.Controllers
             {
                 db.VehicleLoanEntries.Add(vehicleLoanEntry);
                 await db.SaveChangesAsync();
+                int lastId = db.VehicleLoanEntries.Max(x => x.id);
+                int ins = !string.IsNullOrEmpty(vehicleLoanEntry.numberOfInstallments) ? Convert.ToInt32(vehicleLoanEntry.numberOfInstallments) : 0;
+                string firstDate = vehicleLoanEntry.dateOfDue.ToString();
+                if (string.IsNullOrEmpty(firstDate))
+                {
+                    firstDate = DateTime.UtcNow.ToShortDateString();
+                }
+                for (int i = ins; i > 0; i--)
+                {
+                    if (vehicleLoanEntry.typeOfLoan == 1)
+                    {
+                        int dueamount, instrest, loanamount = 0;
+                        dueamount = !string.IsNullOrEmpty(vehicleLoanEntry.dueAmount) ? Convert.ToInt32(vehicleLoanEntry.dueAmount) : 0;
+                        instrest = !string.IsNullOrEmpty(vehicleLoanEntry.amountOfIntrest) ? Convert.ToInt32(vehicleLoanEntry.amountOfIntrest) : 0;
+                        loanamount = !string.IsNullOrEmpty(vehicleLoanEntry.amountOfLoan) ? Convert.ToInt32(vehicleLoanEntry.amountOfLoan) : 0;
+                        int loandue = dueamount + (instrest * ins);
+                        Installment newInstallment = new Installment();
+                        newInstallment.dueAmount = (dueamount + instrest).ToString();
+                        newInstallment.dueStatus = "Pending";
+                        newInstallment.firstDueDate = firstDate;
+                        newInstallment.loanNumber = lastId.ToString();
+                        newInstallment.numberofDue = i.ToString();
+                        newInstallment.loanAmount = (loanamount + loandue).ToString();
+                        DateTime nextDate = Convert.ToDateTime(firstDate);
+                        firstDate = nextDate.AddDays(30).ToString();
+                        db.Installments.Add(newInstallment);
+                    }
+                    else
+                    {
+                        int dueamount, instrest, loanamount = 0;
+                        dueamount = !string.IsNullOrEmpty(vehicleLoanEntry.dueAmount) ? Convert.ToInt32(vehicleLoanEntry.dueAmount) : 0;
+                        instrest = !string.IsNullOrEmpty(vehicleLoanEntry.amountOfIntrest) ? Convert.ToInt32(vehicleLoanEntry.amountOfIntrest) : 0;
+                        loanamount = !string.IsNullOrEmpty(vehicleLoanEntry.amountOfLoan) ? Convert.ToInt32(vehicleLoanEntry.amountOfLoan) : 0;
+                        if (i < ins)
+                        {
+                            loanamount = loanamount - dueamount;
+                            instrest = loanamount * i / 100;
+                        }
+
+                        int loandue = dueamount + (instrest * ins);
+                        Installment newInstallment = new Installment();
+                        newInstallment.dueAmount = (dueamount + instrest).ToString();
+                        newInstallment.dueStatus = "Pending";
+                        newInstallment.firstDueDate = firstDate;
+                        newInstallment.loanNumber = lastId.ToString();
+                        newInstallment.numberofDue = i.ToString();
+                        newInstallment.loanAmount = (loanamount + loandue).ToString();
+                        DateTime nextDate = Convert.ToDateTime(firstDate);
+                        firstDate = nextDate.AddDays(30).ToString();
+                        db.Installments.Add(newInstallment);
+                    }
+                }
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
