@@ -3,119 +3,116 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
 using System.Web;
-using issFinacial.Custom;
 using System.Web.Mvc;
 using issFinacial.Models;
 
 namespace issFinacial.Controllers
 {
-    [CustomAuthorize(Roles = "Admin,Manager")]
-    public class ReceiptEntriesController : Controller
+    public class InstallmentsController : Controller
     {
         private issModel db = new issModel();
 
-        // GET: ReceiptEntries
-        public async Task<ActionResult> Index()
+        // GET: Installments
+        public ActionResult Index()
         {
-            return View(await db.ReceiptEntries.ToListAsync());
+            return View(db.Installments.ToList());
         }
 
-        // GET: ReceiptEntries/Details/5
-        public async Task<ActionResult> Details(int id)
+        // GET: Installments/Details/5
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ReceiptEntry receiptEntry = await db.ReceiptEntries.FindAsync(id);
-            if (receiptEntry == null)
+            Installment installment = db.Installments.Find(id);
+            if (installment == null)
             {
                 return HttpNotFound();
             }
-            return View(receiptEntry);
+            return View(installment);
         }
 
-        // GET: ReceiptEntries/Create
+        // GET: Installments/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: ReceiptEntries/Create
+        // POST: Installments/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "id,No,date,type,name,amount")] ReceiptEntry receiptEntry)
+        public ActionResult Create([Bind(Include = "id,loanNumber,firstDueDate,dueStatus,dueAmount,loanAmount,numberofDue")] Installment installment)
         {
             if (ModelState.IsValid)
             {
-                db.ReceiptEntries.Add(receiptEntry);
-                await db.SaveChangesAsync();
+                db.Installments.Add(installment);
+                db.SaveChanges();
+                
                 return RedirectToAction("Index");
             }
 
-            return View(receiptEntry);
+            return View(installment);
         }
 
-        // GET: ReceiptEntries/Edit/5
-        public async Task<ActionResult> Edit(int id)
+        // GET: Installments/Edit/5
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //int a = Convert.ToInt32(id);
-            ReceiptEntry receiptEntry = await db.ReceiptEntries.FindAsync(id);
-            if (receiptEntry == null)
+            Installment installment = db.Installments.Find(id);
+            if (installment == null)
             {
                 return HttpNotFound();
             }
-            return View(receiptEntry);
+            return View(installment);
         }
 
-        // POST: ReceiptEntries/Edit/5
+        // POST: Installments/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "id,No,date,type,name,amount")] ReceiptEntry receiptEntry)
+        public ActionResult Edit([Bind(Include = "id,loanNumber,firstDueDate,dueStatus,dueAmount,loanAmount,numberofDue")] Installment installment)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(receiptEntry).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                db.Entry(installment).State = EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(receiptEntry);
+            return View(installment);
         }
 
-        // GET: ReceiptEntries/Delete/5
-        public async Task<ActionResult> Delete(string id)
+        // GET: Installments/Delete/5
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ReceiptEntry receiptEntry = await db.ReceiptEntries.FindAsync(id);
-            if (receiptEntry == null)
+            Installment installment = db.Installments.Find(id);
+            if (installment == null)
             {
                 return HttpNotFound();
             }
-            return View(receiptEntry);
+            return View(installment);
         }
 
-        // POST: ReceiptEntries/Delete/5
+        // POST: Installments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            ReceiptEntry receiptEntry = await db.ReceiptEntries.FindAsync(id);
-            db.ReceiptEntries.Remove(receiptEntry);
-            await db.SaveChangesAsync();
+            Installment installment = db.Installments.Find(id);
+            db.Installments.Remove(installment);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

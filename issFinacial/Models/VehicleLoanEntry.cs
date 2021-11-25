@@ -45,12 +45,6 @@ namespace issFinacial.Models
 
         public string paymentMode { get; set; }
         public string checkNo { get; set; }
-       
-
-
-
-
-
         public string amountOfLoan { get; set; }
         public string rateOfIntrestperentage { get; set; }
         public string numberOfInstallments { get; set; }
@@ -90,7 +84,7 @@ namespace issFinacial.Models
         public DateTime? fcExpiryDate { get; set; }
 
         public DateTime? insuranceExpityDate { get; set; }
-
+        public int typeOfLoan { get; set; }
 
 
     }

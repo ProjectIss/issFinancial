@@ -22,6 +22,7 @@ namespace issFinacial.Models
         public System.Data.Entity.DbSet<issFinacial.Models.Agent> Agents { get; set; }
 
         public System.Data.Entity.DbSet<issFinacial.Models.Area> Areas { get; set; }
+        public System.Data.Entity.DbSet<issFinacial.Models.Installment> Installments { get; set; }
 
         public System.Data.Entity.DbSet<issFinacial.Models.InsuranceCompany> InsuranceCompanies { get; set; }
 
