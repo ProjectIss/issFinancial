@@ -9,10 +9,10 @@ namespace issFinacial.Models
     {
         public int id { get; set; }
         public string  loanNumber { get; set; }
-        public string firstDueDate { get; set; }
+        public string DueDate { get; set; }
         public string dueStatus { get; set; }
         public string dueAmount{ get; set; }
-        public string loanAmount { get; set; }
+        public string Intrest { get; set; }
         public string numberofDue { get; set; }
 
     }

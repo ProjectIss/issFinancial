@@ -49,7 +49,7 @@ namespace issFinacial.Models
         public string rateOfIntrestperentage { get; set; }
         public string numberOfInstallments { get; set; }
         public string amountOfIntrest { get; set; }
-        public string totalloanAmount { get; set; }
+        public string totalDueAmount { get; set; }
         public string dueAmount { get; set; }
         public string documentAmount { get; set; }
         public string commisionAmount { get; set; }

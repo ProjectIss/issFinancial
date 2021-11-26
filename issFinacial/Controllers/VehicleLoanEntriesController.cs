@@ -70,7 +70,7 @@ namespace issFinacial.Controllers
                 {
                     firstDate = DateTime.UtcNow.ToShortDateString();
                 }
-                for (int i = ins; i > 0; i--)
+                for (int i = 1; i <= ins; i++)
                 {
                     if (vehicleLoanEntry.typeOfLoan == 1)
                     {
@@ -80,12 +80,12 @@ namespace issFinacial.Controllers
                         loanamount = !string.IsNullOrEmpty(vehicleLoanEntry.amountOfLoan) ? Convert.ToInt32(vehicleLoanEntry.amountOfLoan) : 0;
                         int loandue = dueamount + (instrest * ins);
                         Installment newInstallment = new Installment();
-                        newInstallment.dueAmount = (dueamount + instrest).ToString();
+                        newInstallment.dueAmount = (dueamount).ToString();
                         newInstallment.dueStatus = "Pending";
-                        newInstallment.firstDueDate = firstDate;
+                        newInstallment.DueDate = firstDate;
                         newInstallment.loanNumber = lastId.ToString();
                         newInstallment.numberofDue = i.ToString();
-                        newInstallment.loanAmount = (loanamount + loandue).ToString();
+                        newInstallment.Intrest = (instrest).ToString();
                         DateTime nextDate = Convert.ToDateTime(firstDate);
                         firstDate = nextDate.AddDays(30).ToString();
                         db.Installments.Add(newInstallment);
@@ -106,10 +106,10 @@ namespace issFinacial.Controllers
                         Installment newInstallment = new Installment();
                         newInstallment.dueAmount = (dueamount + instrest).ToString();
                         newInstallment.dueStatus = "Pending";
-                        newInstallment.firstDueDate = firstDate;
+                        newInstallment.DueDate = firstDate;
                         newInstallment.loanNumber = lastId.ToString();
                         newInstallment.numberofDue = i.ToString();
-                        newInstallment.loanAmount = (loanamount + loandue).ToString();
+                        newInstallment.Intrest = (loanamount + loandue).ToString();
                         DateTime nextDate = Convert.ToDateTime(firstDate);
                         firstDate = nextDate.AddDays(30).ToString();
                         db.Installments.Add(newInstallment);

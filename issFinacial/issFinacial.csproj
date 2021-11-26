@@ -243,6 +243,18 @@
     <Compile Include="Migrations\202111250032291_m4.designer.cs">
       <DependentUpon>202111250032291_m4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111252332359_m41.cs" />
+    <Compile Include="Migrations\202111252332359_m41.designer.cs">
+      <DependentUpon>202111252332359_m41.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111260157126_m42.cs" />
+    <Compile Include="Migrations\202111260157126_m42.designer.cs">
+      <DependentUpon>202111260157126_m42.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111260225358_m43.cs" />
+    <Compile Include="Migrations\202111260225358_m43.designer.cs">
+      <DependentUpon>202111260225358_m43.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\API\apiHomeController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -3189,6 +3201,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111250032291_m4.resx">
       <DependentUpon>202111250032291_m4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111252332359_m41.resx">
+      <DependentUpon>202111252332359_m41.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111260157126_m42.resx">
+      <DependentUpon>202111260157126_m42.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111260225358_m43.resx">
+      <DependentUpon>202111260225358_m43.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

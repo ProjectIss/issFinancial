@@ -61,11 +61,11 @@ namespace issFinacial.Controllers
                 for (int i = 1; i < le; i++)
                 {
                     Installment objInstall = new Installment();
-                    objInstall.loanAmount = loanEntry.itemValue;
+                    objInstall.Intrest = loanEntry.itemValue;
                     objInstall.loanNumber = 1.ToString();
                     objInstall.numberofDue = i.ToString();
                     objInstall.dueStatus = "Pending";
-                    objInstall.firstDueDate = DateTime.Now.AddDays(28).ToString();
+                    objInstall.DueDate = DateTime.Now.AddDays(28).ToString();
                     db.Installments.Add(objInstall);
 
                 }
