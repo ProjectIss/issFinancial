@@ -42,5 +42,6 @@ namespace issFinacial.Models
         public System.Data.Entity.DbSet<issFinacial.Models.VehicleLoanEntry> VehicleLoanEntries { get; set; }
 
         public System.Data.Entity.DbSet<issFinacial.Models.Broker> Brokers { get; set; }
+        public System.Data.Entity.DbSet<issFinacial.Models.VechicleLoanCollection> VechicleLoanCollection { get; set; }
     }
 }

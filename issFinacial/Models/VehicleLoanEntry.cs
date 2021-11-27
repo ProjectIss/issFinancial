@@ -28,9 +28,6 @@ namespace issFinacial.Models
         public virtual Broker broker { get; set; }
         public int brokerNameId { get; set; }
         public virtual Broker brokerName { get; set; }
-
-
-
         public string brokerAddress { get; set; }
         public string brokerPhoneNo { get; set; }
         public int areaId { get; set; }

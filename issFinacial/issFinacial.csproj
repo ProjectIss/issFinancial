@@ -235,6 +235,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\InstallmentsController.cs" />
+    <Compile Include="Controllers\VechicleLoanCollectionsController.cs" />
     <Compile Include="Migrations\202111221947146_m3.cs" />
     <Compile Include="Migrations\202111221947146_m3.designer.cs">
       <DependentUpon>202111221947146_m3.cs</DependentUpon>
@@ -255,6 +256,15 @@
     <Compile Include="Migrations\202111260225358_m43.designer.cs">
       <DependentUpon>202111260225358_m43.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111261848242_m44.cs" />
+    <Compile Include="Migrations\202111261848242_m44.designer.cs">
+      <DependentUpon>202111261848242_m44.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111262111262_m45.cs" />
+    <Compile Include="Migrations\202111262111262_m45.designer.cs">
+      <DependentUpon>202111262111262_m45.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VechicleLoanCollection.cs" />
     <Compile Include="Properties\API\apiHomeController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -3171,6 +3181,11 @@
     <Content Include="Views\Installments\Details.cshtml" />
     <Content Include="Views\Installments\Edit.cshtml" />
     <Content Include="Views\Installments\Index.cshtml" />
+    <Content Include="Views\VechicleLoanCollections\Create.cshtml" />
+    <Content Include="Views\VechicleLoanCollections\Delete.cshtml" />
+    <Content Include="Views\VechicleLoanCollections\Details.cshtml" />
+    <Content Include="Views\VechicleLoanCollections\Edit.cshtml" />
+    <Content Include="Views\VechicleLoanCollections\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3210,6 +3225,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111260225358_m43.resx">
       <DependentUpon>202111260225358_m43.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111261848242_m44.resx">
+      <DependentUpon>202111261848242_m44.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111262111262_m45.resx">
+      <DependentUpon>202111262111262_m45.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
