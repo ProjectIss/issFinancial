@@ -46,7 +46,7 @@ namespace issFinacial.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,loanNumber,DueDate,dueStatus,dueAmount,loanAmount,numberofDue")] Installment installment)
+        public ActionResult Create([Bind(Include = "id,loanNumber,DueDate,dueStatus,dueAmount,loanAmount,totalAmount,numberofDue")] Installment installment)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace issFinacial.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,loanNumber,firstDueDate,dueStatus,dueAmount,loanAmount,numberofDue")] Installment installment)
+        public ActionResult Edit([Bind(Include = "id,loanNumber,firstDueDate,dueStatus,dueAmount,loanAmount,totalAmount,numberofDue")] Installment installment)
         {
             if (ModelState.IsValid)
             {

@@ -316,7 +316,7 @@
                                 {
                                     new SelectListItem{ Text="Flat", Value="1"},
                                     new SelectListItem{ Text="Div", Value="2"}
-                                }, "--- Select ---", new { @class = "form-control" })
+                                }, "--- Select ---", new { @class = "form-control", @id = "typeOfLoan" })
                                 @Html.ValidationMessageFor(model => model.advanceEmi, "", new { @class = "text-danger" })
                             </div>
                             <div class="row">
@@ -347,39 +347,42 @@
 
                             <div class="row">
 
+
+
+                                
+                                <div class="form-group col-md-4">
+                                    <label>Document Amount</label>
+                                    @Html.EditorFor(model => model.documentAmount, new { htmlAttributes = new { @class = "form-control", @id = "documentAmount" } })
+                                    @Html.ValidationMessageFor(model => model.documentAmount, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label>Commision Amount</label>
+                                    @Html.EditorFor(model => model.commisionAmount, new { htmlAttributes = new { @class = "form-control", @id = "commisionAmount" } })
+                                    @Html.ValidationMessageFor(model => model.commisionAmount, "", new { @class = "text-danger" })
+                                </div>
                                 <div class="form-group col-md-4">
                                     <label>Intrest Amount</label>
-                                    @Html.EditorFor(model => model.amountOfIntrest, new { htmlAttributes = new { @class = "form-control", @id = "intrestAmount" } })
+                                    @Html.EditorFor(model => model.amountOfIntrest, new { htmlAttributes = new { @class = "form-control", @id = "amountOfIntrest" } })
                                     @Html.ValidationMessageFor(model => model.amountOfIntrest, "", new { @class = "text-danger" })
                                 </div>
+                            </div>
 
+                            <div class="row">
                                 <div class="form-group col-md-4">
                                     <label>Due Amount</label>
                                     @Html.EditorFor(model => model.dueAmount, new { htmlAttributes = new { @class = "form-control", @id = "dueAmount" } })
                                     @Html.ValidationMessageFor(model => model.dueAmount, "", new { @class = "text-danger" })
                                 </div>
+
                                 <div class="form-group col-md-4">
                                     <label>Month Loan Amount</label>
-                                    @Html.EditorFor(model => model.dueAmount, new { htmlAttributes = new { @class = "form-control", @id = "totalloanamount" } })
-                                    @Html.ValidationMessageFor(model => model.dueAmount, "", new { @class = "text-danger" })
+                                    @Html.EditorFor(model => model.totalDueAmount, new { htmlAttributes = new { @class = "form-control", @id = "totalDueAmount" } })
+                                    @Html.ValidationMessageFor(model => model.totalDueAmount, "", new { @class = "text-danger" })
                                 </div>
-                            </div>
-
-                            <div class="row">
-
                                 <div class="form-group col-md-4">
-                                    <label>Document Amount</label>
-                                    @Html.EditorFor(model => model.documentAmount, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.documentAmount, "", new { @class = "text-danger" })
-                                </div>
-
-
-
-
-                                <div class="form-group col-md-4">
-                                    <label>Commision Amount</label>
-                                    @Html.EditorFor(model => model.commisionAmount, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.commisionAmount, "", new { @class = "text-danger" })
+                                    <label>Total Amount</label>
+                                    @Html.EditorFor(model => model.totalAmount, new { htmlAttributes = new { @class = "form-control", @id = "totalAmount" } })
+                                    @Html.ValidationMessageFor(model => model.totalAmount, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                         </div>
@@ -629,27 +632,34 @@
 <script>
     $(document).ready(function () {
         function update() {
-         
-            let interest = $('#intrest').val(); dueAmount
+            debugger
+  
+            let interest = $('#intrest').val();
             let Installments = $('#Installments').val();
+            let document = $('#documentAmount').val();
+            let commision = $('#commisionAmount').val();
+
             let permonth = 1;
             let amount1 = $("#Amount").val();
             let dayscount = 30;
             //let amount2 = parseInt(amount1) + parseInt(interest) * parseInt(amount1) + (parseInt(dayscount) * (perday / 100));
-            let apr =( amount1 * interest / 100)/12;
-            $("#intrestAmount").val(apr);
+            let apr = (amount1 * interest / 100) / 12;
+            $("#amountOfIntrest").val(apr);
             let due = amount1 / Installments;
             $("#dueAmount").val(due);
-            let lone = due + apr;
-            $("#totalloanAmount").val(lone);
-            //  $("#amount3").val(parseFloat(amount2 - amount1).toFixed(2));
-            // $("#amount4").val(apr);
+            let lone = apr + due;
+            $("#totalDueAmount").val(lone);
+            let totalamount = parseInt(amount1) + parseInt(document) + parseInt(commision) + (apr * parseInt(Installments));
+            $("#totalAmount").val(totalamount);
+        
+    
         }
 
-        $("#Installments").focusout(function () {
+        $("#commisionAmount").focusout(function () {
        
             update();
         })
+
 
     });
 

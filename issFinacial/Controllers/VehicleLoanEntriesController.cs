@@ -57,7 +57,7 @@ namespace issFinacial.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "id,shareHolderId,customerId,customerNameId,fatherName,address,phoneNo,age,agentId,agentName,conductPerson,brokerId,brokerNameId,brokerAddress,brokerPhoneNo,areaId,areaName,guardianName,guardianAddress,guardianPhoneNo,dateofAgreement,dateOfDue,advanceEmi,paymentMode,checkNo,amountOfLoan,rateOfIntrestperentage,numberOfInstallments,amountOfIntrest,totalloanAmount,dueAmount,documentAmount,commisionAmount,InsuranceId,policyNo,policyAmount,premiumAmount,insuredNo,insureExpiryOn,policyReceived,vehicleNo,engineNo,chaseNo,registeredAt,registeredDate,rtoOfficeRefNO,endosmentOn,documentWith,VehicleId,vehicleName,vehicleColor,endosmentDone,duplicateKeyRecd,policyCircle,vehicleType,taxExpiryDate,permitExpiryDate,fcExpiryDate,insuranceExpityDate,typeOfLoan")] VehicleLoanEntry vehicleLoanEntry)
+        public async Task<ActionResult> Create([Bind(Include = "id,shareHolderId,customerId,customerNameId,fatherName,address,phoneNo,age,agentId,agentName,conductPerson,brokerId,brokerNameId,brokerAddress,brokerPhoneNo,areaId,areaName,guardianName,guardianAddress,guardianPhoneNo,dateofAgreement,dateOfDue,advanceEmi,paymentMode,checkNo,amountOfLoan,rateOfIntrestperentage,numberOfInstallments,amountOfIntrest,totalloanAmount,totalAmount,dueAmount,documentAmount,commisionAmount,InsuranceId,policyNo,policyAmount,premiumAmount,insuredNo,insureExpiryOn,policyReceived,vehicleNo,engineNo,chaseNo,registeredAt,registeredDate,rtoOfficeRefNO,endosmentOn,documentWith,VehicleId,vehicleName,vehicleColor,totalDueAmount,endosmentDone,duplicateKeyRecd,policyCircle,vehicleType,taxExpiryDate,permitExpiryDate,fcExpiryDate,insuranceExpityDate,typeOfLoan")] VehicleLoanEntry vehicleLoanEntry)
         {
             if (ModelState.IsValid)
             {
@@ -70,46 +70,61 @@ namespace issFinacial.Controllers
                 {
                     firstDate = DateTime.UtcNow.ToShortDateString();
                 }
+                decimal Dueamount, Instrest, totalAmount, loanamount = 0;
+
+                Dueamount = !string.IsNullOrEmpty(vehicleLoanEntry.dueAmount) ? Convert.ToDecimal(vehicleLoanEntry.dueAmount) : 0;
+                Instrest = !string.IsNullOrEmpty(vehicleLoanEntry.amountOfIntrest) ? Convert.ToDecimal(vehicleLoanEntry.amountOfIntrest) : 0;
+                totalAmount = !string.IsNullOrEmpty(vehicleLoanEntry.totalAmount) ? Convert.ToDecimal(vehicleLoanEntry.totalAmount) : 0;
+                loanamount = !string.IsNullOrEmpty(vehicleLoanEntry.amountOfLoan) ? Convert.ToInt32(vehicleLoanEntry.amountOfLoan) : 0;
+                decimal instrestofAmount = !string.IsNullOrEmpty(vehicleLoanEntry.rateOfIntrestperentage) ? Convert.ToDecimal(vehicleLoanEntry.rateOfIntrestperentage) : 0; ;
                 for (int i = 1; i <= ins; i++)
                 {
                     if (vehicleLoanEntry.typeOfLoan == 1)
                     {
-                        int dueamount, instrest, loanamount = 0;
-                        dueamount = !string.IsNullOrEmpty(vehicleLoanEntry.dueAmount) ? Convert.ToInt32(vehicleLoanEntry.dueAmount) : 0;
-                        instrest = !string.IsNullOrEmpty(vehicleLoanEntry.amountOfIntrest) ? Convert.ToInt32(vehicleLoanEntry.amountOfIntrest) : 0;
-                        loanamount = !string.IsNullOrEmpty(vehicleLoanEntry.amountOfLoan) ? Convert.ToInt32(vehicleLoanEntry.amountOfLoan) : 0;
-                        int loandue = dueamount + (instrest * ins);
+                        decimal dueamounts, instrests, totalAmounts, loanamounts = 0;
+                        dueamounts = !string.IsNullOrEmpty(vehicleLoanEntry.totalDueAmount) ? Convert.ToDecimal(vehicleLoanEntry.totalDueAmount) : 0;
+                        instrests = !string.IsNullOrEmpty(vehicleLoanEntry.amountOfIntrest) ? Convert.ToDecimal(vehicleLoanEntry.amountOfIntrest) : 0;
+                        totalAmounts = !string.IsNullOrEmpty(vehicleLoanEntry.totalAmount) ? Convert.ToDecimal(vehicleLoanEntry.totalAmount) : 0;
+
+                        loanamounts = !string.IsNullOrEmpty(vehicleLoanEntry.amountOfLoan) ? Convert.ToInt32(vehicleLoanEntry.amountOfLoan) : 0;
+                        decimal loandue = dueamounts + (instrests * ins);
                         Installment newInstallment = new Installment();
-                        newInstallment.dueAmount = (dueamount).ToString();
+                        newInstallment.dueAmount = (dueamounts).ToString();
                         newInstallment.dueStatus = "Pending";
                         newInstallment.DueDate = firstDate;
                         newInstallment.loanNumber = lastId.ToString();
                         newInstallment.numberofDue = i.ToString();
-                        newInstallment.Intrest = (instrest).ToString();
+                        newInstallment.Intrest = (instrests).ToString();
+                        newInstallment.loanAmount = (loanamounts).ToString();
+                        newInstallment.totalAmount = (totalAmounts).ToString();
                         DateTime nextDate = Convert.ToDateTime(firstDate);
                         firstDate = nextDate.AddDays(30).ToString();
                         db.Installments.Add(newInstallment);
                     }
                     else
                     {
-                        int dueamount, instrest, loanamount = 0;
-                        dueamount = !string.IsNullOrEmpty(vehicleLoanEntry.dueAmount) ? Convert.ToInt32(vehicleLoanEntry.dueAmount) : 0;
-                        instrest = !string.IsNullOrEmpty(vehicleLoanEntry.amountOfIntrest) ? Convert.ToInt32(vehicleLoanEntry.amountOfIntrest) : 0;
-                        loanamount = !string.IsNullOrEmpty(vehicleLoanEntry.amountOfLoan) ? Convert.ToInt32(vehicleLoanEntry.amountOfLoan) : 0;
-                        if (i < ins)
-                        {
-                            loanamount = loanamount - dueamount;
-                            instrest = loanamount * i / 100;
-                        }
 
-                        int loandue = dueamount + (instrest * ins);
+                        decimal interstVal = 0;
+                        if (i != 1)
+                        {
+                            if (i <= ins)
+                            {
+                                
+                                loanamount = loanamount - Dueamount ;
+                                Instrest = (loanamount * instrestofAmount / 100) / 12;
+                            }
+                            totalAmount = loanamount;
+                        }
+                        decimal loandue = Dueamount + (Instrest * ins);
                         Installment newInstallment = new Installment();
-                        newInstallment.dueAmount = (dueamount + instrest).ToString();
+                        newInstallment.dueAmount = (Dueamount + Instrest).ToString();
                         newInstallment.dueStatus = "Pending";
                         newInstallment.DueDate = firstDate;
                         newInstallment.loanNumber = lastId.ToString();
                         newInstallment.numberofDue = i.ToString();
-                        newInstallment.Intrest = (loanamount + loandue).ToString();
+                        newInstallment.Intrest = (Instrest).ToString();
+                        newInstallment.totalAmount = (totalAmount).ToString();
+                        newInstallment.loanAmount = (loanamount).ToString();
                         DateTime nextDate = Convert.ToDateTime(firstDate);
                         firstDate = nextDate.AddDays(30).ToString();
                         db.Installments.Add(newInstallment);
@@ -160,7 +175,7 @@ namespace issFinacial.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "id,shareHolderId,customerId,customerNameId,fatherName,address,phoneNo,age,agentId,agentName,conductPerson,brokerId,brokerNameId,brokerAddress,brokerPhoneNo,areaId,areaName,guardianName,guardianAddress,guardianPhoneNo,dateofAgreement,dateOfDue,advanceEmi,paymentMode,checkNo,amountOfLoan,rateOfIntrestperentage,numberOfInstallments,amountOfIntrest,totalloanAmount,dueAmount,documentAmount,commisionAmount,InsuranceId,policyNo,policyAmount,premiumAmount,insuredNo,insureExpiryOn,policyReceived,vehicleNo,engineNo,chaseNo,registeredAt,registeredDate,rtoOfficeRefNO,endosmentOn,documentWith,VehicleId,vehicleName,vehicleColor,endosmentDone,duplicateKeyRecd,policyCircle,vehicleType,taxExpiryDate,permitExpiryDate,fcExpiryDate,insuranceExpityDate")] VehicleLoanEntry vehicleLoanEntry)
+        public async Task<ActionResult> Edit([Bind(Include = "id,shareHolderId,customerId,customerNameId,fatherName,address,phoneNo,age,agentId,agentName,conductPerson,brokerId,brokerNameId,brokerAddress,brokerPhoneNo,areaId,areaName,guardianName,guardianAddress,guardianPhoneNo,dateofAgreement,dateOfDue,advanceEmi,paymentMode,checkNo,amountOfLoan,rateOfIntrestperentage,numberOfInstallments,amountOfIntrest,totalloanAmount,totalAmount,dueAmount,documentAmount,commisionAmount,InsuranceId,policyNo,policyAmount,premiumAmount,insuredNo,insureExpiryOn,policyReceived,vehicleNo,engineNo,chaseNo,registeredAt,registeredDate,rtoOfficeRefNO,endosmentOn,documentWith,VehicleId,vehicleName,vehicleColor,endosmentDone,totalDueAmount,duplicateKeyRecd,policyCircle,vehicleType,taxExpiryDate,permitExpiryDate,fcExpiryDate,insuranceExpityDate")] VehicleLoanEntry vehicleLoanEntry)
         {
             if (ModelState.IsValid)
             {

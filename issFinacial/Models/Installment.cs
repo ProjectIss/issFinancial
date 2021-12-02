@@ -14,6 +14,8 @@ namespace issFinacial.Models
         public string dueAmount{ get; set; }
         public string Intrest { get; set; }
         public string numberofDue { get; set; }
+        public string totalAmount { get; set; }
+        public string loanAmount { get; set; }
 
     }
 }

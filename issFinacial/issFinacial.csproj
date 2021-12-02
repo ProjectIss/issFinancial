@@ -235,6 +235,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\InstallmentsController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\VechicleLoanCollectionsController.cs" />
     <Compile Include="Migrations\202111221947146_m3.cs" />
     <Compile Include="Migrations\202111221947146_m3.designer.cs">
@@ -263,6 +264,18 @@
     <Compile Include="Migrations\202111262111262_m45.cs" />
     <Compile Include="Migrations\202111262111262_m45.designer.cs">
       <DependentUpon>202111262111262_m45.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111302108204_m5.cs" />
+    <Compile Include="Migrations\202111302108204_m5.designer.cs">
+      <DependentUpon>202111302108204_m5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112011004531_m6.cs" />
+    <Compile Include="Migrations\202112011004531_m6.designer.cs">
+      <DependentUpon>202112011004531_m6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112012239517_m31.cs" />
+    <Compile Include="Migrations\202112012239517_m31.designer.cs">
+      <DependentUpon>202112012239517_m31.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\VechicleLoanCollection.cs" />
     <Compile Include="Properties\API\apiHomeController.cs" />
@@ -3181,11 +3194,7 @@
     <Content Include="Views\Installments\Details.cshtml" />
     <Content Include="Views\Installments\Edit.cshtml" />
     <Content Include="Views\Installments\Index.cshtml" />
-    <Content Include="Views\VechicleLoanCollections\Create.cshtml" />
-    <Content Include="Views\VechicleLoanCollections\Delete.cshtml" />
-    <Content Include="Views\VechicleLoanCollections\Details.cshtml" />
-    <Content Include="Views\VechicleLoanCollections\Edit.cshtml" />
-    <Content Include="Views\VechicleLoanCollections\Index.cshtml" />
+    <Content Include="Views\Report\InstallmentSchedule.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3231,6 +3240,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111262111262_m45.resx">
       <DependentUpon>202111262111262_m45.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111302108204_m5.resx">
+      <DependentUpon>202111302108204_m5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112011004531_m6.resx">
+      <DependentUpon>202112011004531_m6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112012239517_m31.resx">
+      <DependentUpon>202112012239517_m31.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

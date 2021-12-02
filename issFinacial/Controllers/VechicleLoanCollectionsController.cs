@@ -17,6 +17,7 @@ namespace issFinacial.Controllers
         // GET: VechicleLoanCollections
         public ActionResult Index()
         {
+            //VehicleLoanCollections
             return View(db.VechicleLoanCollection.ToList());
         }
 
@@ -46,7 +47,7 @@ namespace issFinacial.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,CollectionDate,PaymentType,LoanNumber,Name,Address,PhoneNo,VehicleName,VehicleMake,NumberOfInstallments,SelectDueNumber,DueDate,PrincipleAmount,IntrestAmount,TotalAmount,LateDays,LateDaysAmount,Penalty,Discount,NetAmount")] VechicleLoanCollection vechicleLoanCollection)
+        public ActionResult Create([Bind(Include = "Id,CollectionDate,PaymentType,LoanNumber,Name,Address,PhoneNo,VehicleName,NumberOfInstallments,SelectDueNumber,DueDate,PrincipleAmount,IntrestAmount,TotalAmount,LateDays,LateDaysAmount,Penalty,Discount,NetAmount")] VechicleLoanCollection vechicleLoanCollection)
         {
             if (ModelState.IsValid)
             {

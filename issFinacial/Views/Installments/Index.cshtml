@@ -70,56 +70,81 @@
                     </div>
                 </div>
             </div>
-                        <table class="table">
-                            <tr>
-                                <th>
-                                   Loan Number
-                                </th>
-                                <th>
-                                   First Due Date
-                                </th>
-                                <th>
-                                    Due Status
-                                </th>
-                                <th>
-                                   Due Amount
-                                </th>
-                                <th>
-                                    Loan Amount
-                                </th>
-                                <th>
-                                    Number of Due
-                                </th>
-                                <th></th>
-                            </tr>
+            <table class="table">
+                <tr>
+                    <th>
+                        Loan Number
+                    </th>
+                    <th>
+                        Number of Due
+                    </th>
+                    <th>
+                        Loan Amount
+                    </th>
+                    <th>
+                        First Due Date
+                    </th>
+                    <th>
+                        Due Status
+                    </th>
+                    <th>
+                        Intrest Amount
+                    </th>
+                    <th>
+                        Due Amount
+                    </th>
 
-                            @foreach (var item in Model)
+
+                    <th>
+                        Total Amount
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.loanNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.numberofDue)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.loanAmount)
+                    </td>
+                    @if (@item.DueDate != null)
                             {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.loanNumber)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.DueDate)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.dueStatus)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.dueAmount)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Intrest)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.numberofDue)
-                                    </td>
-                                    <td>
-                                        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                                        @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.id })
-                                    </td>
-                                </tr>
+                                <td>
+                                    @item.DueDate
+                                </td>
                             }
+                            else
+                            {
+                                <td></td>}
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dueStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Intrest)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dueAmount)
+                    </td>
 
-                        </table>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.totalAmount)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                    </td>
+                </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>
