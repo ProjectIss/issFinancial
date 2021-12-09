@@ -11,5 +11,6 @@ namespace issFinacial.Models
         public string name { get; set; }
         public string address { get; set; }
         public string cellNo { get; set; }
+        public string siNo { get; set; }
     }
 }

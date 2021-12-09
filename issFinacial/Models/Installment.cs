@@ -16,6 +16,7 @@ namespace issFinacial.Models
         public string numberofDue { get; set; }
         public string totalAmount { get; set; }
         public string loanAmount { get; set; }
+        public string phoneNumbers{ get; set; }
 
     }
 }

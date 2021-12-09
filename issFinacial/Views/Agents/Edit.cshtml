@@ -82,6 +82,7 @@
                     <div class="form-group">
 
                         <div class="col-md-10">
+                            <label>Dealer Name</label>
                             @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Dealer Name" } })
                             @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
                         </div>
@@ -90,6 +91,7 @@
                     <div class="form-group">
 
                         <div class="col-md-10">
+                            <label>Dealer Address</label>
                             @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control", @placeholder = "Dealer Address" } })
                             @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
                         </div>
@@ -98,6 +100,7 @@
                     <div class="form-group">
 
                         <div class="col-md-10">
+                            <label>Cell Number</label>
                             @Html.EditorFor(model => model.cellNo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Cell No" } })
                             @Html.ValidationMessageFor(model => model.cellNo, "", new { @class = "text-danger" })
                         </div>

@@ -75,91 +75,46 @@
                             @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-primary" })
                         </div>
                     </div>
-                </div>
-                <div class="form-horizontal">
-
-
-
-
-                    <div class="form-group">
-                        <div class="form-group col-md-4">
-                            @Html.EditorFor(model => model.No, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ledger Id" } })
-                            @Html.ValidationMessageFor(model => model.No, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="form-group col-md-4">
-                            @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ledger Name" } })
-                            @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label>Date</label>
-                        @Html.TextBoxFor(m => m.date, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
-
-                    </div>
-                    <div class="form-group">
-                        <div class="form-group col-md-4">
-                            @Html.EditorFor(model => model.type, new { htmlAttributes = new { @class = "form-control", @placeholder = "Payment Type" } })
-                            @Html.ValidationMessageFor(model => model.type, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="form-group col-md-4">
-                            @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control", @placeholder = "Description" } })
-                            @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="form-group col-md-4">
-                            @Html.EditorFor(model => model.amount, new { htmlAttributes = new { @class = "form-control", @placeholder = "Amount" } })
-                            @Html.ValidationMessageFor(model => model.amount, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="text-right">
-                            <button type="submit" value="Create" class="btn btn-success">Submit</button>
-                            @Html.ActionLink("Cancel", "Index", null, htmlAttributes: new { @class = "btn btn-primary" })
-                        </div>
-                    </div>
-
+                </div>                
                 </div><div class="form-horizontal">
-
-
-
-
     <div class="form-group">
         <div class="form-group col-md-4">
+            <label>Ledger ID</label>
             @Html.EditorFor(model => model.No, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ledger Id" } })
             @Html.ValidationMessageFor(model => model.No, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
         <div class="form-group col-md-4">
+            <label>Ledger Name</label>
             @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ledger Name" } })
             @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
         <div class="form-group col-md-4">
+            <label>Date</label>
             @Html.EditorFor(model => model.date, new { htmlAttributes = new { @class = "form-control", @placeholder = "Date" } })
             @Html.ValidationMessageFor(model => model.date, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
         <div class="form-group col-md-4">
+            <label>Payment Type</label>
             @Html.EditorFor(model => model.type, new { htmlAttributes = new { @class = "form-control", @placeholder = "Payment Type" } })
             @Html.ValidationMessageFor(model => model.type, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
         <div class="form-group col-md-4">
+            <label>Description</label>
             @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control", @placeholder = "Description" } })
             @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
         <div class="form-group col-md-4">
+            <label>Amount</label>
             @Html.EditorFor(model => model.amount, new { htmlAttributes = new { @class = "form-control", @placeholder = "Amount" } })
             @Html.ValidationMessageFor(model => model.amount, "", new { @class = "text-danger" })
         </div>
@@ -172,8 +127,6 @@
     </div>
 
 </div>
-            </div>
-
         }
 
     </div>

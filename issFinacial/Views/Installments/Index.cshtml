@@ -93,10 +93,11 @@
                     <th>
                         Due Amount
                     </th>
-
-
                     <th>
                         Total Amount
+                    </th>
+                    <th>
+                        Phone Numbers
                     </th>
                     <th></th>
                 </tr>
@@ -114,14 +115,14 @@
                         @Html.DisplayFor(modelItem => item.loanAmount)
                     </td>
                     @if (@item.DueDate != null)
-                            {
-                                <td>
-                                    @item.DueDate
-                                </td>
-                            }
-                            else
-                            {
-                                <td></td>}
+                    {
+                        <td>
+                            @item.DueDate
+                        </td>
+                    }
+                    else
+                    {
+                        <td></td>}
                     <td>
                         @Html.DisplayFor(modelItem => item.dueStatus)
                     </td>
@@ -131,10 +132,11 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.dueAmount)
                     </td>
-
-
                     <td>
                         @Html.DisplayFor(modelItem => item.totalAmount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.phoneNumbers)
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.id }) |

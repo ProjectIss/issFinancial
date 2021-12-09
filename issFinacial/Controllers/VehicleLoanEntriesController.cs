@@ -18,7 +18,7 @@ namespace issFinacial.Controllers
         // GET: VehicleLoanEntries
         public async Task<ActionResult> Index()
         {
-            var vehicleLoanEntries = db.VehicleLoanEntries.Include(v => v.agent).Include(v => v.area).Include(v => v.broker).Include(v => v.brokerName).Include(v => v.Customer).Include(v => v.customerName).Include(v => v.Insurance).Include(v => v.shareHoldere).Include(v => v.vehicle).OrderByDescending(x => x.id);
+            var vehicleLoanEntries = db.VehicleLoanEntries.Include(v => v.agent).Include(v => v.area).Include(v => v.broker).Include(v => v.brokerName).Include(v => v.Customer).Include(v => v.Insurance).Include(v => v.shareHoldere).Include(v => v.vehicle).OrderByDescending(x => x.id);
             return View(await vehicleLoanEntries.ToListAsync());
         }
 
@@ -42,9 +42,13 @@ namespace issFinacial.Controllers
         {
             ViewBag.agentId = new SelectList(db.Agents, "id", "name");
             ViewBag.areaId = new SelectList(db.Areas, "id", "name");
-            ViewBag.brokerId = new SelectList(db.Brokers, "id", "name");
+            ViewBag.brokerId = new SelectList(db.Brokers, "id", "id");
             ViewBag.brokerNameId = new SelectList(db.Brokers, "id", "name");
-            ViewBag.customerId = new SelectList(db.Customers, "id", "customerName");
+            ViewBag.ageId = new SelectList(db.Customers, "id", "Age");
+            ViewBag.phoneNoId = new SelectList(db.Customers, "id", "phoneno");
+            ViewBag.addressId = new SelectList(db.Customers, "id", "address");
+            ViewBag.fatherNameId = new SelectList(db.Customers, "id", "fathername");
+            ViewBag.customerId = new SelectList(db.Customers, "id", "id");
             ViewBag.customerNameId = new SelectList(db.Customers, "id", "customerName");
             ViewBag.InsuranceId = new SelectList(db.InsuranceCompanies, "id", "name");
             ViewBag.shareHolderId = new SelectList(db.Shareholders, "id", "name");
@@ -136,14 +140,24 @@ namespace issFinacial.Controllers
 
             ViewBag.agentId = new SelectList(db.Agents, "id", "name", vehicleLoanEntry.agentId);
             ViewBag.areaId = new SelectList(db.Areas, "id", "name", vehicleLoanEntry.areaId);
-            ViewBag.brokerId = new SelectList(db.Brokers, "id", "name", vehicleLoanEntry.brokerId);
+            ViewBag.brokerId = new SelectList(db.Brokers, "id", "id", vehicleLoanEntry.brokerId);
             ViewBag.brokerNameId = new SelectList(db.Brokers, "id", "name", vehicleLoanEntry.brokerNameId);
-            ViewBag.customerId = new SelectList(db.Customers, "id", "customerName", vehicleLoanEntry.customerId);
+            ViewBag.customerId = new SelectList(db.Customers, "id", "id", vehicleLoanEntry.customerId);
             ViewBag.customerNameId = new SelectList(db.Customers, "id", "customerName", vehicleLoanEntry.customerNameId);
             ViewBag.InsuranceId = new SelectList(db.InsuranceCompanies, "id", "name", vehicleLoanEntry.InsuranceId);
             ViewBag.shareHolderId = new SelectList(db.Shareholders, "id", "name", vehicleLoanEntry.shareHolderId);
             ViewBag.VehicleId = new SelectList(db.Vehicles, "id", "name", vehicleLoanEntry.VehicleId);
             return View(vehicleLoanEntry);
+        }
+        [HttpPost]
+        public JsonResult customerName(int NAME)
+        {
+            if (NAME > 0)
+            {
+                var resp = db.Customers.Where(x => x.id == NAME).ToList();
+                return Json(resp, JsonRequestBehavior.AllowGet);
+            }
+            else return Json("NoData", JsonRequestBehavior.AllowGet);
         }
 
         // GET: VehicleLoanEntries/Edit/5
@@ -160,9 +174,9 @@ namespace issFinacial.Controllers
             }
             ViewBag.agentId = new SelectList(db.Agents, "id", "name", vehicleLoanEntry.agentId);
             ViewBag.areaId = new SelectList(db.Areas, "id", "name", vehicleLoanEntry.areaId);
-            ViewBag.brokerId = new SelectList(db.Brokers, "id", "name", vehicleLoanEntry.brokerId);
+            ViewBag.brokerId = new SelectList(db.Brokers, "id", "id", vehicleLoanEntry.brokerId);
             ViewBag.brokerNameId = new SelectList(db.Brokers, "id", "name", vehicleLoanEntry.brokerNameId);
-            ViewBag.customerId = new SelectList(db.Customers, "id", "customerName", vehicleLoanEntry.customerId);
+            ViewBag.customerId = new SelectList(db.Customers, "id", "id", vehicleLoanEntry.customerId);
             ViewBag.customerNameId = new SelectList(db.Customers, "id", "customerName", vehicleLoanEntry.customerNameId);
             ViewBag.InsuranceId = new SelectList(db.InsuranceCompanies, "id", "name", vehicleLoanEntry.InsuranceId);
             ViewBag.shareHolderId = new SelectList(db.Shareholders, "id", "name", vehicleLoanEntry.shareHolderId);
@@ -185,9 +199,9 @@ namespace issFinacial.Controllers
             }
             ViewBag.agentId = new SelectList(db.Agents, "id", "name", vehicleLoanEntry.agentId);
             ViewBag.areaId = new SelectList(db.Areas, "id", "name", vehicleLoanEntry.areaId);
-            ViewBag.brokerId = new SelectList(db.Brokers, "id", "name", vehicleLoanEntry.brokerId);
+            ViewBag.brokerId = new SelectList(db.Brokers, "id", "id", vehicleLoanEntry.brokerId);
             ViewBag.brokerNameId = new SelectList(db.Brokers, "id", "name", vehicleLoanEntry.brokerNameId);
-            ViewBag.customerId = new SelectList(db.Customers, "id", "customerName", vehicleLoanEntry.customerId);
+            ViewBag.customerId = new SelectList(db.Customers, "id", "id", vehicleLoanEntry.customerId);
             ViewBag.customerNameId = new SelectList(db.Customers, "id", "customerName", vehicleLoanEntry.customerNameId);
             ViewBag.InsuranceId = new SelectList(db.InsuranceCompanies, "id", "name", vehicleLoanEntry.InsuranceId);
             ViewBag.shareHolderId = new SelectList(db.Shareholders, "id", "name", vehicleLoanEntry.shareHolderId);

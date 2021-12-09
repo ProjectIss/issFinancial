@@ -10,7 +10,9 @@ namespace issFinacial.Models
         public int Id { get; set; }
         public DateTime? CollectionDate { get; set; }
         public string PaymentType { get; set; }
-        public string LoanNumber { get; set; }
+        public int vehicleLoanId { get; set; }
+        public virtual VehicleLoanEntry vehicleLoan { get; set; }
+       
         public string Name { get; set; }
         public string Address { get; set; }
         public string PhoneNo { get; set; }
@@ -22,6 +24,7 @@ namespace issFinacial.Models
         public DateTime? DueDate { get; set; }
         public float PrincipleAmount { get; set; }
         public float IntrestAmount { get; set; }
+        public float DueAmount { get; set; }
         public float TotalAmount { get; set; }
         public DateTime? LateDays { get; set; }
         public float LateDaysAmount { get; set; }

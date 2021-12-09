@@ -49,13 +49,14 @@
         <div class="card cardBody" style="overflow:auto">
             <div class="col s1 card card-header info">
                 <select name="id" id="id" class="form-control col-xl-10" required>
-                    <option value="">-Select -Installment Id</option>
-                    @foreach (var item in ViewBag.customers)
+                    <option value="">-Select -Loan Number</option>
+                    @foreach (var item in ViewBag.customer)
                     {
                         <option value="@item.Value">@item.Text </option>
                     }
                 </select>
             </div>
+           
 
             @*<h6><center><b>GOODS RECEIPT NOTE</u></b>   </center></h6>*@
 
@@ -138,7 +139,7 @@
                 </tr>
             </table>
             <br />
-            
+
             <table id="Installment">
                 <thead>
                     <tr>
@@ -164,6 +165,7 @@
 <script>
     $(function () {
         //loadData();
+        let id = 0;
         $('#print').click(function () {
             $('#header').hide();
             $(this).hide();
@@ -180,16 +182,17 @@
 
     });
         $('#id').change(function () {
-            let id = $(this).val();
-            getDetail(id);1
-        });
-    function getDetail(id) {
+             id = $(this).val()
+            getDetail(id); 
+    });
+   
+    function getDetail(id, phoneNo) {
         //$('#total').empty();
             $.ajax({
                 type: 'POST',
                 url: '@Url.Content("~/Report/getloandetail")',
                 dataType: 'json',
-                data: { Id: id },
+                data: { Id: id, phoneNo: phoneNo},
                 success: function (data) {
                     debugger
                     console.log(data);

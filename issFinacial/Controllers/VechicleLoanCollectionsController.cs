@@ -17,7 +17,6 @@ namespace issFinacial.Controllers
         // GET: VechicleLoanCollections
         public ActionResult Index()
         {
-            //VehicleLoanCollections
             return View(db.VechicleLoanCollection.ToList());
         }
 
@@ -39,6 +38,7 @@ namespace issFinacial.Controllers
         // GET: VechicleLoanCollections/Create
         public ActionResult Create()
         {
+            ViewBag.VehicleLoanId = new SelectList(db.VehicleLoanEntries, "id", "id");
             return View();
         }
 
@@ -47,7 +47,7 @@ namespace issFinacial.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,CollectionDate,PaymentType,LoanNumber,Name,Address,PhoneNo,VehicleName,NumberOfInstallments,SelectDueNumber,DueDate,PrincipleAmount,IntrestAmount,TotalAmount,LateDays,LateDaysAmount,Penalty,Discount,NetAmount")] VechicleLoanCollection vechicleLoanCollection)
+        public ActionResult Create([Bind(Include = "Id,CollectionDate,PaymentType,vehicleLoanId,LoanNumber,vehicleNo,Name,Address,PhoneNo,VehicleName,VechicleNumber,VehicleMake,NumberOfInstallments,SelectDueNumber,DueDate,PrincipleAmount,IntrestAmount,TotalAmount,LateDays,LateDaysAmount,Penalty,Discount,NetAmount")] VechicleLoanCollection vechicleLoanCollection)
         {
             if (ModelState.IsValid)
             {
@@ -55,10 +55,19 @@ namespace issFinacial.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.VehicleLoanId = new SelectList(db.VehicleLoanEntries, "id", "id", vechicleLoanCollection.vehicleLoanId);
             return View(vechicleLoanCollection);
         }
-
+        [HttpPost]
+        public JsonResult Name(int NAME)
+        {
+            if (NAME > 0)
+            {
+                var resp = db.VehicleLoanEntries.Where(x => x.id == NAME).ToList();
+                return Json(resp, JsonRequestBehavior.AllowGet);
+            }
+            else return Json("NoData", JsonRequestBehavior.AllowGet);
+        }
         // GET: VechicleLoanCollections/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -71,6 +80,8 @@ namespace issFinacial.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.VehicleLoanId = new SelectList(db.VehicleLoanEntries, "id", "id", vechicleLoanCollection.vehicleLoanId);
+
             return View(vechicleLoanCollection);
         }
 
@@ -79,7 +90,7 @@ namespace issFinacial.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,CollectionDate,PaymentType,LoanNumber,Name,Address,PhoneNo,VehicleName,VehicleMake,NumberOfInstallments,SelectDueNumber,DueDate,PrincipleAmount,IntrestAmount,TotalAmount,LateDays,LateDaysAmount,Penalty,Discount,NetAmount")] VechicleLoanCollection vechicleLoanCollection)
+        public ActionResult Edit([Bind(Include = "Id,CollectionDate,PaymentType,LoanNumber,Name,vehicleLoanId,Address,PhoneNo,VehicleName,VechicleNumber,VehicleMake,NumberOfInstallments,SelectDueNumber,DueDate,PrincipleAmount,IntrestAmount,TotalAmount,LateDays,LateDaysAmount,Penalty,Discount,NetAmount")] VechicleLoanCollection vechicleLoanCollection)
         {
             if (ModelState.IsValid)
             {
@@ -87,6 +98,8 @@ namespace issFinacial.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.VehicleLoanId = new SelectList(db.VehicleLoanEntries, "id", "id", vechicleLoanCollection.vehicleLoanId);
+
             return View(vechicleLoanCollection);
         }
 

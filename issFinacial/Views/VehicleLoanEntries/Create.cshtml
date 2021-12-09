@@ -110,21 +110,21 @@
                                     <div class="form-group col-md-4">
                                         <label>Father Name</label>
                                         @Html.EditorFor(model => model.fatherName, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.fatherName, "", new { @class = "text-danger" })
+                                        @Html.ValidationMessageFor(model => model.fatherName, "", new { @class = "text-danger", @id = "fatherName" })
                                     </div>
 
 
                                     <div class="form-group col-md-4">
                                         <label>Address</label>
                                         @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+                                        @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger", @id = "address" })
                                     </div>
 
 
                                     <div class="form-group col-md-4">
-                                        <label>Phone No</label>
+                                        <label>Phone Number</label>
                                         @Html.EditorFor(model => model.phoneNo, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.phoneNo, "", new { @class = "text-danger" })
+                                        @Html.ValidationMessageFor(model => model.phoneNo, "", new { @class = "text-danger", @id = "phoneNo" })
                                     </div>
 
                                 </div>
@@ -133,10 +133,8 @@
                                     <div class="form-group col-md-4">
                                         <label>Age</label>
                                         @Html.EditorFor(model => model.age, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.age, "", new { @class = "text-danger" })
+                                        @Html.ValidationMessageFor(model => model.age, "", new { @class = "text-danger", @id = "age" })
                                     </div>
-
-
                                     <div class="form-group col-md-4">
                                         <label>Area Name</label>
                                         @Html.DropDownList("areaId", null, htmlAttributes: new { @class = "form-control" })
@@ -286,7 +284,7 @@
                                         @Html.DropDownList("advanceEmi", new List<SelectListItem>
                                         {
                                             new SelectListItem{ Text="Cash", Value="Check"},
-                                            new SelectListItem{ Text="Cash", Value="Check"}
+                                            new SelectListItem{ Text="E-Transfer", Value="Check"}
                                         }, "--- Select ---", new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.paymentMode, "", new { @class = "text-danger" })
                                     </div>
@@ -678,5 +676,41 @@
 
         return mths[currM] + " " + currD + ", " + currY;
     }
+
+
+    $(document).ready(function () {
+        $("#customerId").change(function () {
+            var name = $(this).find('option:selected').val();
+            customerName(name);
+        })
+       
+    });
+    function customerName(name) {
+              $.ajax({
+            type: 'POST',
+            url: '@Url.Content("~/VehicleLoanEntries/customerName")',
+            dataType: 'json',
+            data: { NAME: name },
+                  success: function (result) {
+                      console.log(result)
+                var data = result;
+
+                      $("#customerNameId").empty();
+                      $("#phoneNo").empty();
+                for (var i = 0; i < data.length; i++) {
+                    $("#customerNameId").append("<option value='" + data[i].id + "'>" + data[i].customerName + "</option>");
+                    $("#phoneNo").val(data[i].contactNo)
+                    $("#age").val(data[i].Age)
+                    $("#address").val(data[i].customerAddress)
+                    $("#fatherName").val(data[i].FatherName)
+
+                }
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    };
+
 
 </script>

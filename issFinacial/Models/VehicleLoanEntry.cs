@@ -12,8 +12,6 @@ namespace issFinacial.Models
         public virtual Shareholder shareHoldere { get; set; }
         public int customerId { get; set; }
         public virtual Customer Customer { get; set; }
-
-
         public int customerNameId { get; set; }
         public virtual Customer customerName { get; set; }
         public string fatherName { get; set; }
