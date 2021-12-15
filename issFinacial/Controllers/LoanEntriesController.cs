@@ -62,7 +62,7 @@ namespace issFinacial.Controllers
                 {
                     Installment objInstall = new Installment();
                     objInstall.Intrest = loanEntry.itemValue;
-                    objInstall.loanNumber = 1.ToString();
+                    objInstall.loanNumber = 1;
                     objInstall.numberofDue = i.ToString();
                     objInstall.dueStatus = "Pending";
                     objInstall.DueDate = DateTime.Now.AddDays(28).ToString();

@@ -45,7 +45,7 @@ namespace issFinacial.Controllers
                 else if(Id != null)
                 {
                     var loanDetail = db.VehicleLoanEntries.Where(x => x.id == Id).FirstOrDefault();
-                    var installment = db.Installments.Where(x => x.loanNumber == Id.ToString()).ToList();
+                    var installment = db.Installments.Where(x => x.loanNumber == Id).ToList();
                     var result = new { loanDetail, installment };
                     return Json(result, JsonRequestBehavior.AllowGet);
                 }

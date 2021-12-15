@@ -38,8 +38,10 @@ namespace issFinacial.Controllers
         // GET: VechicleLoanCollections/Create
         public ActionResult Create()
         {
+            ViewBag.NumberOfInstallmentsId = new SelectList(db.Installments, "id", "numberofDue");
             ViewBag.VehicleLoanId = new SelectList(db.VehicleLoanEntries, "id", "id");
             return View();
+
         }
 
         // POST: VechicleLoanCollections/Create
@@ -63,7 +65,29 @@ namespace issFinacial.Controllers
         {
             if (NAME > 0)
             {
-                var resp = db.VehicleLoanEntries.Where(x => x.id == NAME).ToList();
+                var resp = (from loan in db.VehicleLoanEntries
+                            join installment in db.Installments on loan.id equals installment.loanNumber
+                            where loan.id == NAME
+                            select new
+                            {
+                                id = installment.id,
+                                Name = loan.customerName,
+                                Address = loan.address,
+                                PhoneNo = loan.phoneNo,
+                                VechicleNumber = loan.vehicleNo,
+                                NumberOfInstallments = loan.numberOfInstallments,
+                                PrincipleAmount = loan.amountOfLoan,
+                                IntrestAmount = loan.amountOfIntrest,
+                                DueAmount = loan.dueAmount,
+                                DueDate = loan.dateOfDue,
+                                TotalAmount = Convert.ToInt32(loan.amountOfIntrest) + Convert.ToInt32(loan.dueAmount)
+                                //let amount = parseInt(loan.amountOfIntrest) + parseInt(loan.dueAmount);
+                                //$("#TotaldueAmount").(amount);
+                            }).ToList();
+
+                //let amount = parseInt(data[i].amountOfIntrest) + parseInt(data[i].dueAmount);
+                //              $("#TotaldueAmount").val(amount);
+                //db.VehicleLoanEntries.Where(x => x.id == NAME).ToList();
                 return Json(resp, JsonRequestBehavior.AllowGet);
             }
             else return Json("NoData", JsonRequestBehavior.AllowGet);

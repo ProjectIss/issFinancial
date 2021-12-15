@@ -317,6 +317,18 @@
     <Compile Include="Migrations\202112090211270_m311.designer.cs">
       <DependentUpon>202112090211270_m311.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202112092232330_m312.cs" />
+    <Compile Include="Migrations\202112092232330_m312.designer.cs">
+      <DependentUpon>202112092232330_m312.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112100304057_m313.cs" />
+    <Compile Include="Migrations\202112100304057_m313.designer.cs">
+      <DependentUpon>202112100304057_m313.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112141921034_m314.cs" />
+    <Compile Include="Migrations\202112141921034_m314.designer.cs">
+      <DependentUpon>202112141921034_m314.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\VechicleLoanCollection.cs" />
     <Compile Include="Properties\API\apiHomeController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -3324,6 +3336,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202112090211270_m311.resx">
       <DependentUpon>202112090211270_m311.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112092232330_m312.resx">
+      <DependentUpon>202112092232330_m312.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112100304057_m313.resx">
+      <DependentUpon>202112100304057_m313.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112141921034_m314.resx">
+      <DependentUpon>202112141921034_m314.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

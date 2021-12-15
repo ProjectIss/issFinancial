@@ -96,7 +96,7 @@ namespace issFinacial.Controllers
                         newInstallment.dueAmount = (dueamounts).ToString();
                         newInstallment.dueStatus = "Pending";
                         newInstallment.DueDate = firstDate;
-                        newInstallment.loanNumber = lastId.ToString();
+                        newInstallment.loanNumber = lastId;
                         newInstallment.numberofDue = i.ToString();
                         newInstallment.Intrest = (instrests).ToString();
                         newInstallment.loanAmount = (loanamounts).ToString();
@@ -124,7 +124,7 @@ namespace issFinacial.Controllers
                         newInstallment.dueAmount = (Dueamount + Instrest).ToString();
                         newInstallment.dueStatus = "Pending";
                         newInstallment.DueDate = firstDate;
-                        newInstallment.loanNumber = lastId.ToString();
+                        newInstallment.loanNumber = lastId;
                         newInstallment.numberofDue = i.ToString();
                         newInstallment.Intrest = (Instrest).ToString();
                         newInstallment.totalAmount = (totalAmount).ToString();

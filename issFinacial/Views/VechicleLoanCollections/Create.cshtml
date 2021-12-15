@@ -89,7 +89,7 @@
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label>Collection Date</label>
-                                        @Html.EditorFor(model => model.CollectionDate, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.EditorFor(model => model.CollectionDate, new { htmlAttributes = new { @class = "form-control",@id= "CollectionDate" } })
                                         @Html.ValidationMessageFor(model => model.CollectionDate, "", new { @class = "text-danger" })
                                     </div>
                                    <div class="form-group col-md-4">
@@ -145,8 +145,8 @@
 
                                         <div class="form-group col-md-4">
                                             <label>Number Of Installment</label>
-                                            @Html.EditorFor(model => model.NumberOfInstallments, new { htmlAttributes = new { @class = "form-control",@id= "NumberOfInstallments" } })
-                                            @Html.ValidationMessageFor(model => model.NumberOfInstallments, "", new { @class = "text-danger" })
+                                            @Html.EditorFor(model => model.NumberOfInstallmentsId, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.NumberOfInstallmentsId, "", new { @class = "text-danger" })
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label>Select Due Number</label>
@@ -183,13 +183,13 @@
                                 <div class="col-md-12">
                                     <div class="row">
                                         <div class="form-group col-md-4">
-                                            <label>Total Amount</label>
-                                            @Html.EditorFor(model => model.TotalAmount, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.TotalAmount, "", new { @class = "text-danger" })
+                                            <label>Total Due Amount</label>
+                                            @Html.EditorFor(model => model.TotaldueAmount, new { htmlAttributes = new { @class = "form-control",@id= "TotaldueAmount" } })
+                                            @Html.ValidationMessageFor(model => model.TotaldueAmount, "", new { @class = "text-danger" })
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label>Late Days</label>
-                                            @Html.EditorFor(model => model.LateDays, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.EditorFor(model => model.LateDays, new { htmlAttributes = new { @class = "form-control",@id= "LateDays" } })
                                             @Html.ValidationMessageFor(model => model.LateDays, "", new { @class = "text-danger" })
                                         </div>
                                         <div class="form-group col-md-4">
@@ -241,7 +241,7 @@
             var name = $(this).find('option:selected').val();
            Name(name);
         })
-     
+       var days = daysdifference('03/19/2021', '03/31/2021')
     });
     function Name(name) {
               $.ajax({
@@ -253,26 +253,49 @@
                       console.log(result)
                       debugger
                 var data = result;
-               
-                $("#Name").empty();
-                for (var i = 0; i < data.length; i++) {
-                    $("#Name").val(data[i].Customer.customerName)
-                    $("#Address").val(data[i].Customer.customerAddress)
-                    $("#PhoneNo").val(data[i].Customer.contactNo)
-                    $("#VechicleNumber").val(data[i].vehicleNo)
-                    $("#NumberOfInstallments").val(data[i].numberOfInstallments)
-                    $("#DueDate").val(data[i].dateOfDue)
-                    $("#PrincipleAmount").val(data[i].amountOfLoan)
-                    $("#IntrestAmount").val(data[i].amountOfIntrest)
-                    $("#DueAmount").val(data[i].dueAmount)
-                    
-                }
+                      $("#DueDate").empty();
+                      $("#Name").empty();
+                      if (data.length > 0) {
+                          for (var i = 0; i < data.length; i++) {
+                              var tempData = {};
+                              if (data[i].dateOfDue != null) { tempData.dateOfDue = DateConvertion(data[i].dateOfDue) } else tempData.dateOfDue = "";
+
+                              $("#Name").val(data[i].Customer.customerName)
+                              $("#Address").val(data[i].Customer.customerAddress)
+                              $("#PhoneNo").val(data[i].Customer.contactNo)
+                              $("#VechicleNumber").val(data[i].vehicleNo)
+                              $("#NumberOfInstallmentsId").val(data[i].numberOfInstallments)
+                              $("#PrincipleAmount").val(data[i].amountOfLoan)
+                              $("#IntrestAmount").val(data[i].amountOfIntrest)
+                              $("#DueAmount").val(data[i].dueAmount)
+                              $("#DueDate").val(tempData.dateOfDue);
+
+                              let amount = parseInt(data[i].amountOfIntrest) + parseInt(data[i].dueAmount);
+                              $("#TotaldueAmount").val(amount);
+                              let interest = $('#CollectionDate').val();
+                              let latedays = Date(interest) - Date(tempData.dateOfDue);
+                              $("#LateDays").val(latedays);
+
+                          }
+                      }
             },
             error: function (err) {
                 console.log(err);
             }
         });
     };
+    function daysdifference(firstDate, secondDate) {
+        var startDay = new Date(firstDate);
+        var endDay = new Date(secondDate);
 
+        // Determine the time difference between two dates     
+        var millisBetween = startDay.getTime() - endDay.getTime();
+
+        // Determine the number of days between two dates  
+        var days = millisBetween / (1000 * 3600 * 24);
+
+        // Show the final number of days between dates     
+        return Math.round(Math.abs(days));
+    }  
   
 </script>        
