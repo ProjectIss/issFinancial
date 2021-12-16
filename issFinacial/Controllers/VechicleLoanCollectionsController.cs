@@ -65,6 +65,7 @@ namespace issFinacial.Controllers
         {
             if (NAME > 0)
             {
+                
                 var resp = (from loan in db.VehicleLoanEntries
                             join installment in db.Installments on loan.id equals installment.loanNumber
                             where loan.id == NAME
@@ -80,13 +81,12 @@ namespace issFinacial.Controllers
                                 IntrestAmount = loan.amountOfIntrest,
                                 DueAmount = loan.dueAmount,
                                 DueDate = loan.dateOfDue,
-                                TotalAmount = Convert.ToInt32(loan.amountOfIntrest) + Convert.ToInt32(loan.dueAmount)
+
+                                //TotalAmount = Convert.ToInt32(loan.amountOfIntrest) + Convert.ToInt32(loan.dueAmount)
                                 //let amount = parseInt(loan.amountOfIntrest) + parseInt(loan.dueAmount);
                                 //$("#TotaldueAmount").(amount);
                             }).ToList();
 
-                //let amount = parseInt(data[i].amountOfIntrest) + parseInt(data[i].dueAmount);
-                //              $("#TotaldueAmount").val(amount);
                 //db.VehicleLoanEntries.Where(x => x.id == NAME).ToList();
                 return Json(resp, JsonRequestBehavior.AllowGet);
             }

@@ -128,10 +128,10 @@
                         @Html.EditorFor(model => model.VehicleMake, new { htmlAttributes = new { @class = "form-control", @placeholder = "Vechicle Make" } })
                         @Html.ValidationMessageFor(model => model.VehicleMake, "", new { @class = "text-danger" })
                     </div>
-                    <div class="col-md-10">
-                        <label>Number Of Installments</label>
-                        @Html.EditorFor(model => model.NumberOfInstallments, new { htmlAttributes = new { @class = "form-control", @placeholder = "Number Of Installment" } })
-                        @Html.ValidationMessageFor(model => model.NumberOfInstallments, "", new { @class = "text-danger" })
+                    <div class="col-md-10">                       
+                        <label>Number Of Installment</label>
+                        @Html.DropDownList("NumberOfInstallmentsId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.NumberOfInstallmentsId, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-md-10">
                         <label>Select Due Number</label>
@@ -155,8 +155,8 @@
                     </div>
                     <div class="col-md-10">
                         <label>Total Amount</label>
-                        @Html.EditorFor(model => model.TotalAmount, new { htmlAttributes = new { @class = "form-control", @placeholder = "Total Amount" } })
-                        @Html.ValidationMessageFor(model => model.TotalAmount, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.TotaldueAmount, new { htmlAttributes = new { @class = "form-control", @placeholder = "Total Amount" } })
+                        @Html.ValidationMessageFor(model => model.TotaldueAmount, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-md-10">
                         <label>Late Days</label>

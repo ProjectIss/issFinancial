@@ -22,6 +22,7 @@ namespace issFinacial.Models
         public int NumberOfInstallmentsId { get; set; }
         public virtual Installment numberofDue { get; set; }
         public string SelectDueNumber { get; set; }
+       
         public DateTime? DueDate { get; set; }
         public float PrincipleAmount { get; set; }
         public float IntrestAmount { get; set; }
