@@ -236,99 +236,17 @@
   <ItemGroup>
     <Compile Include="Controllers\InstallmentsController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\TblMastersController.cs" />
     <Compile Include="Controllers\VechicleLoanCollectionsController.cs" />
-    <Compile Include="Migrations\202111221947146_m3.cs" />
-    <Compile Include="Migrations\202111221947146_m3.designer.cs">
-      <DependentUpon>202111221947146_m3.cs</DependentUpon>
+    <Compile Include="Migrations\202112232021074_m1.cs" />
+    <Compile Include="Migrations\202112232021074_m1.designer.cs">
+      <DependentUpon>202112232021074_m1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202111250032291_m4.cs" />
-    <Compile Include="Migrations\202111250032291_m4.designer.cs">
-      <DependentUpon>202111250032291_m4.cs</DependentUpon>
+    <Compile Include="Migrations\202112232227368_m2.cs" />
+    <Compile Include="Migrations\202112232227368_m2.designer.cs">
+      <DependentUpon>202112232227368_m2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202111252332359_m41.cs" />
-    <Compile Include="Migrations\202111252332359_m41.designer.cs">
-      <DependentUpon>202111252332359_m41.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202111260157126_m42.cs" />
-    <Compile Include="Migrations\202111260157126_m42.designer.cs">
-      <DependentUpon>202111260157126_m42.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202111260225358_m43.cs" />
-    <Compile Include="Migrations\202111260225358_m43.designer.cs">
-      <DependentUpon>202111260225358_m43.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202111261848242_m44.cs" />
-    <Compile Include="Migrations\202111261848242_m44.designer.cs">
-      <DependentUpon>202111261848242_m44.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202111262111262_m45.cs" />
-    <Compile Include="Migrations\202111262111262_m45.designer.cs">
-      <DependentUpon>202111262111262_m45.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202111302108204_m5.cs" />
-    <Compile Include="Migrations\202111302108204_m5.designer.cs">
-      <DependentUpon>202111302108204_m5.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202112011004531_m6.cs" />
-    <Compile Include="Migrations\202112011004531_m6.designer.cs">
-      <DependentUpon>202112011004531_m6.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202112012239517_m31.cs" />
-    <Compile Include="Migrations\202112012239517_m31.designer.cs">
-      <DependentUpon>202112012239517_m31.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202112042219162_m32.cs" />
-    <Compile Include="Migrations\202112042219162_m32.designer.cs">
-      <DependentUpon>202112042219162_m32.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202112072301110_m33.cs" />
-    <Compile Include="Migrations\202112072301110_m33.designer.cs">
-      <DependentUpon>202112072301110_m33.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202112080008038_m34.cs" />
-    <Compile Include="Migrations\202112080008038_m34.designer.cs">
-      <DependentUpon>202112080008038_m34.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202112080058491_m35.cs" />
-    <Compile Include="Migrations\202112080058491_m35.designer.cs">
-      <DependentUpon>202112080058491_m35.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202112080220077_m36.cs" />
-    <Compile Include="Migrations\202112080220077_m36.designer.cs">
-      <DependentUpon>202112080220077_m36.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202112080549233_m37.cs" />
-    <Compile Include="Migrations\202112080549233_m37.designer.cs">
-      <DependentUpon>202112080549233_m37.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202112080731356_m38.cs" />
-    <Compile Include="Migrations\202112080731356_m38.designer.cs">
-      <DependentUpon>202112080731356_m38.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202112081711428_m39.cs" />
-    <Compile Include="Migrations\202112081711428_m39.designer.cs">
-      <DependentUpon>202112081711428_m39.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202112082007278_m310.cs" />
-    <Compile Include="Migrations\202112082007278_m310.designer.cs">
-      <DependentUpon>202112082007278_m310.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202112090211270_m311.cs" />
-    <Compile Include="Migrations\202112090211270_m311.designer.cs">
-      <DependentUpon>202112090211270_m311.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202112092232330_m312.cs" />
-    <Compile Include="Migrations\202112092232330_m312.designer.cs">
-      <DependentUpon>202112092232330_m312.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202112100304057_m313.cs" />
-    <Compile Include="Migrations\202112100304057_m313.designer.cs">
-      <DependentUpon>202112100304057_m313.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202112141921034_m314.cs" />
-    <Compile Include="Migrations\202112141921034_m314.designer.cs">
-      <DependentUpon>202112141921034_m314.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Models\TblMaster.cs" />
     <Compile Include="Models\VechicleLoanCollection.cs" />
     <Compile Include="Properties\API\apiHomeController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -356,16 +274,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202109290833090_m1.cs" />
-    <Compile Include="Migrations\202109290833090_m1.designer.cs">
-      <DependentUpon>202109290833090_m1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202111200124236_m2.cs" />
-    <Compile Include="Migrations\202111200124236_m2.designer.cs">
-      <DependentUpon>202111200124236_m2.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AccountGrouping.cs" />
+    <Compile Include="Models\AccountGroup.cs" />
     <Compile Include="Models\AccountLedger.cs" />
     <Compile Include="Models\Agent.cs" />
     <Compile Include="Models\Area.cs" />
@@ -3271,80 +3181,11 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202109290833090_m1.resx">
-      <DependentUpon>202109290833090_m1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202112232021074_m1.resx">
+      <DependentUpon>202112232021074_m1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202111200124236_m2.resx">
-      <DependentUpon>202111200124236_m2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202111221947146_m3.resx">
-      <DependentUpon>202111221947146_m3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202111250032291_m4.resx">
-      <DependentUpon>202111250032291_m4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202111252332359_m41.resx">
-      <DependentUpon>202111252332359_m41.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202111260157126_m42.resx">
-      <DependentUpon>202111260157126_m42.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202111260225358_m43.resx">
-      <DependentUpon>202111260225358_m43.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202111261848242_m44.resx">
-      <DependentUpon>202111261848242_m44.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202111262111262_m45.resx">
-      <DependentUpon>202111262111262_m45.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202111302108204_m5.resx">
-      <DependentUpon>202111302108204_m5.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202112011004531_m6.resx">
-      <DependentUpon>202112011004531_m6.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202112012239517_m31.resx">
-      <DependentUpon>202112012239517_m31.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202112042219162_m32.resx">
-      <DependentUpon>202112042219162_m32.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202112072301110_m33.resx">
-      <DependentUpon>202112072301110_m33.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202112080008038_m34.resx">
-      <DependentUpon>202112080008038_m34.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202112080058491_m35.resx">
-      <DependentUpon>202112080058491_m35.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202112080220077_m36.resx">
-      <DependentUpon>202112080220077_m36.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202112080549233_m37.resx">
-      <DependentUpon>202112080549233_m37.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202112080731356_m38.resx">
-      <DependentUpon>202112080731356_m38.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202112081711428_m39.resx">
-      <DependentUpon>202112081711428_m39.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202112082007278_m310.resx">
-      <DependentUpon>202112082007278_m310.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202112090211270_m311.resx">
-      <DependentUpon>202112090211270_m311.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202112092232330_m312.resx">
-      <DependentUpon>202112092232330_m312.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202112100304057_m313.resx">
-      <DependentUpon>202112100304057_m313.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202112141921034_m314.resx">
-      <DependentUpon>202112141921034_m314.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202112232227368_m2.resx">
+      <DependentUpon>202112232227368_m2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

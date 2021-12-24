@@ -1,9 +1,9 @@
 ﻿@model issFinacial.Models.VechicleLoanCollection
 
 @{
-                /**/
+    /**/
 
-                ViewBag.Title = "Create";
+    ViewBag.Title = "Create";
 }
 
 <div class="page-header page-header-light">
@@ -90,152 +90,207 @@
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label>Collection Date</label>
-                                        @Html.EditorFor(model => model.CollectionDate, new { htmlAttributes = new { @class = "form-control", @id = "CollectionDate" } })
-                                        @Html.ValidationMessageFor(model => model.CollectionDate, "", new { @class = "text-danger" })
+                                        @Html.TextBoxFor(m => m.CollectionDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date",@id ="CollectionDate"  })
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label>Payment Type</label>
-                                        @Html.DropDownList("advanceEmi", new List<SelectListItem>
+                                        @Html.DropDownList("PaymentType", new List<SelectListItem>
                                         {
-                                            new SelectListItem{ Text="Cash", Value="Check"},
-                                            new SelectListItem{ Text="E-Transfer", Value="Check"}
+                                            new SelectListItem{ Text="Cash", Value="Cash"},
+                                            new SelectListItem{ Text="Credit Card", Value="Credit Card"}                                            
                                         }, "--- Select ---", new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.PaymentType, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <div class="row">                          
-                                            <div class="form-group col-md-4">
-                                                <label>vehicle Loan Id</label>
-                                                @Html.DropDownList("vehicleLoanId", null, htmlAttributes: new { @class = "form-control" })
-                                                @Html.ValidationMessageFor(model => model.vehicleLoanId, "", new { @class = "text-danger" })
-                                            </div>
-                                            <div class="form-group col-md-4">
-                                                <label>Name</label>
-                                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger", @id = "Name" })
-                                            </div>
-                                            <div class="form-group col-md-4">
-                                                <label>Address</label>
-                                                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @id = "Address" } })
-                                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })                                                                                                          
-                                            </div>
-                            </div>
-                            <div class="col-md-12">
                                 <div class="row">
                                     <div class="form-group col-md-4">
-                                        <label>Phone No</label>
-                                        @Html.EditorFor(model => model.PhoneNo, new { htmlAttributes = new { @class = "form-control", @id = "PhoneNo" } })
-                                        @Html.ValidationMessageFor(model => model.PhoneNo, "", new { @class = "text-danger" })
+                                        <label>vehicle Loan Id</label>
+                                        @Html.DropDownList("vehicleLoanId", null, htmlAttributes: new { @class = "form-control", @id = "vehicleLoanId" })
+                                        @Html.ValidationMessageFor(model => model.vehicleLoanId, "", new { @class = "text-danger" })
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label>Vechicle Number</label>
-                                        @Html.EditorFor(model => model.VechicleNumber, new { htmlAttributes = new { @class = "form-control", @id = "VechicleNumber" } })
-                                        @Html.ValidationMessageFor(model => model.VechicleNumber, "", new { @class = "text-danger" })
+                                        <label>Name</label>
+                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger", @id = "Name" })
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label>Vechicle Make</label>
-                                        @Html.EditorFor(model => model.VehicleMake, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.VehicleMake, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="row">
-                                    <div class="form-group col-md-4">
-                                        <label>Number Of Installment</label>
-                                        @Html.DropDownList("NumberOfInstallmentsId", null, htmlAttributes: new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.NumberOfInstallmentsId, "", new { @class = "text-danger" })
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label>Select Due Number</label>
-                                        @Html.EditorFor(model => model.SelectDueNumber, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.SelectDueNumber, "", new { @class = "text-danger" })
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label>Due Date</label>
-                                        @Html.EditorFor(model => model.DueDate, new { htmlAttributes = new { @class = "form-control", @id = "DueDate" } })
-                                        @Html.ValidationMessageFor(model => model.DueDate, "", new { @class = "text-danger" })
+                                        <label>Address</label>
+                                        @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @id = "Address" } })
+                                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="row">
-                                    <div class="form-group col-md-4">
-                                        <label>Principle Amount</label>
-                                        @Html.EditorFor(model => model.PrincipleAmount, new { htmlAttributes = new { @class = "form-control", @id = "PrincipleAmount" } })
-                                        @Html.ValidationMessageFor(model => model.PrincipleAmount, "", new { @class = "text-danger" })
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label>Intrest Amount</label>
-                                        @Html.EditorFor(model => model.IntrestAmount, new { htmlAttributes = new { @class = "form-control", @id = "IntrestAmount" } })
-                                        @Html.ValidationMessageFor(model => model.IntrestAmount, "", new { @class = "text-danger" })
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label>Total Due Amount</label>
-                                        @Html.EditorFor(model => model.TotaldueAmount, new { htmlAttributes = new { @class = "form-control", @id = "TotaldueAmount" } })
-                                        @Html.ValidationMessageFor(model => model.TotaldueAmount, "", new { @class = "text-danger" })
-                                    </div>                                   
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="row">
-                                    <div class="form-group col-md-4">
-                                        <label>Late Days</label>
-                                        @Html.EditorFor(model => model.LateDays, new { htmlAttributes = new { @class = "form-control", @id = "Late Days" } })
-                                        @Html.ValidationMessageFor(model => model.LateDays, "", new { @class = "text-danger" })
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label>Late Days Amount</label>
-                                        @Html.EditorFor(model => model.LateDaysAmount, new { htmlAttributes = new { @class = "form-control", @id = "Late Days Amount" } })
-                                        @Html.ValidationMessageFor(model => model.LateDaysAmount, "", new { @class = "text-danger" })
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label>Penalty</label>
-                                        @Html.EditorFor(model => model.Penalty, new { htmlAttributes = new { @class = "form-control", @id = "Penalty" } })
-                                        @Html.ValidationMessageFor(model => model.Penalty, "", new { @class = "text-danger" })
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="form-group col-md-4">
+                                            <label>Phone No</label>
+                                            @Html.EditorFor(model => model.PhoneNo, new { htmlAttributes = new { @class = "form-control", @id = "PhoneNo" } })
+                                            @Html.ValidationMessageFor(model => model.PhoneNo, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Vechicle Number</label>
+                                            @Html.EditorFor(model => model.VechicleNumber, new { htmlAttributes = new { @class = "form-control", @id = "VechicleNumber" } })
+                                            @Html.ValidationMessageFor(model => model.VechicleNumber, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Due Status</label>
+                                            @Html.DropDownList("DueStatus", new List<SelectListItem>
+                                            {
+                                                new SelectListItem{ Text="Paid", Value="Paid"},                                               
+                                            }, "--- Select ---", new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.DueStatus, "", new { @class = "text-danger" })
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="row">                                    
-                                    <div class="form-group col-md-4">
-                                        <label>Discount</label>
-                                        @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.Discount, "", new { @class = "text-danger" })
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label>NetAmount</label>
-                                        @Html.EditorFor(model => model.NetAmount, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.NetAmount, "", new { @class = "text-danger" })
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="form-group col-md-4">
+                                            <label>Number Of Installment</label>
+                                            @Html.EditorFor(model => model.NumberOfInstallmentsId, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.NumberOfInstallmentsId, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Select Due Number</label>
+                                            @Html.DropDownList("SelectDueNumberId", null, htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.SelectDueNumberId, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Due Date</label>
+                                            @Html.EditorFor(model => model.DueDate, new { htmlAttributes = new { @class = "form-control", @id = "DueDate" } })
+                                            @Html.ValidationMessageFor(model => model.DueDate, "", new { @class = "text-danger" })
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="text-right">
-                                <button type="submit" value="Create" class="btn btn-success">Submit</button>
-                                @Html.ActionLink("Cancel", "Index", null, htmlAttributes: new { @class = "btn btn-primary" })
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="form-group col-md-4">
+                                            <label>Principle Amount</label>
+                                            @Html.EditorFor(model => model.PrincipleAmount, new { htmlAttributes = new { @class = "form-control", @id = "PrincipleAmount" } })
+                                            @Html.ValidationMessageFor(model => model.PrincipleAmount, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Due Amount</label>
+                                            @Html.EditorFor(model => model.MonthLoan, new { htmlAttributes = new { @class = "form-control", @id = "MonthLoan" } })
+                                            @Html.ValidationMessageFor(model => model.MonthLoan, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Intrest Amount</label>
+                                            @Html.EditorFor(model => model.IntrestAmount, new { htmlAttributes = new { @class = "form-control", @id = "IntrestAmount" } })
+                                            @Html.ValidationMessageFor(model => model.IntrestAmount, "", new { @class = "text-danger" })
+                                        </div>                                       
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="form-group col-md-4">
+                                            <label>Total Due Amount</label>
+                                            @Html.EditorFor(model => model.TotaldueAmount, new { htmlAttributes = new { @class = "form-control", @id = "TotaldueAmount" } })
+                                            @Html.ValidationMessageFor(model => model.TotaldueAmount, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Late Days</label>
+                                            @Html.EditorFor(model => model.LateDays, new { htmlAttributes = new { @class = "form-control", @id = "LateDays" } })
+                                            @Html.ValidationMessageFor(model => model.LateDays, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Late Days Amount</label>
+                                            @Html.EditorFor(model => model.LateDaysAmount, new { htmlAttributes = new { @class = "form-control", @id = "LateDaysAmount" } })
+                                            @Html.ValidationMessageFor(model => model.LateDaysAmount, "", new { @class = "text-danger" })
+                                        </div>                                       
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                 <div class="form-group col-md-4">
+                                   <label>Penalty</label>
+                                    @Html.EditorFor(model => model.Penalty, new { htmlAttributes = new { @class = "form-control", @id = "Penalty" } })
+                                    @Html.ValidationMessageFor(model => model.Penalty, "", new { @class = "text-danger" })
+                                    </div>
+                                <div class="form-group col-md-4">
+                                    <label>Discount</label>
+                                    @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control", @id= "Discount" } })
+                                    @Html.ValidationMessageFor(model => model.Discount, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label>NetAmount</label>
+                                    @Html.EditorFor(model => model.NetAmount, new { htmlAttributes = new { @class = "form-control",@id = "NetAmount" } })
+                                    @Html.ValidationMessageFor(model => model.NetAmount, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <button type="submit" value="Create" class="btn btn-success">Submit</button>
+                            @Html.ActionLink("Cancel", "Index", null, htmlAttributes: new { @class = "btn btn-primary" })
+                        </div>
                     </div>
+                </div>
 
-             
-          
 
-        }
-</div>
+
+
+            }
         </div>
     </div>
-    </div>
-    <script>
-   $(document).ready(function () {
-       $("#vehicleLoanId").change(function () {
+</div>
+    
+<script>
+    var loanInstallements = [];
+    $(document).ready(function ()
+    {
+       $("#vehicleLoanId").change(function ()
+       {
             var name = $(this).find('option:selected').val();
            Name(name);
+       })
+        $("#SelectDueNumberId").change(function () {
+            debugger
+               var due = $(this).find('option:selected').val();
+               // Due(due);
+            var selectedDue = loanInstallements.find(x => x.SelectDueNumberId == due);
+            $("#DueDate").val(selectedDue.DueDate.split(' ')[0]);
+            $("#PrincipleAmount").val(selectedDue.PrincipleAmount)
+            $("#IntrestAmount").val(selectedDue.IntrestAmount)
+            let amount = (selectedDue.DueAmount);
+            $("#TotaldueAmount").val(amount);
+            let amounts = parseInt(selectedDue.DueAmount) - parseInt(selectedDue.IntrestAmount);
+            $("#MonthLoan").val(amounts);
+            //let daysamount = 50;
+            //$("#LateDaysAmount").val(daysamount);            
+           var CollectionDate = $('#CollectionDate').val();
+            var DueDate = $('#DueDate').val();
+            var days = daysdifference(CollectionDate, DueDate)
+            function daysdifference(CollectionDate, DueDate) {
+                var startDay = new Date(CollectionDate);
+                var endDay = new Date(DueDate);
+                var millisBetween = startDay.getTime() - endDay.getTime();
+                var daya = millisBetween / (1000 * 3600 * 24);
+                $("#LateDays").val(Math.round(daya));       
+
+                            
+                
+            }
+           
         })
-       var days = daysdifference('03/19/2021', '03/31/2021')
+        $("#NetAmount").click(function () {
+            debugger
+            let day = $('#LateDays').val();
+            let amount = $('#TotaldueAmount').val();
+            let daysamount = $('#LateDaysAmount').val();
+            let bus = parseInt(amount) + (parseInt(daysamount) * parseInt(day));
+            $("#Penalty").val(bus);  
+            let bu = $('#Penalty').val();
+                let Discount = $('#Discount').val();
+                let car = parseInt(bu) - parseInt(Discount);
+            $("#NetAmount").val(car);
+               
+
+            
+
+        })
+
     });
     function Name(name) {
               $.ajax({
@@ -245,31 +300,24 @@
             data: { NAME: name },
                   success: function (result) {
                       console.log(result)
-                      debugger
                 var data = result;
                       $("#DueDate").empty();
                       $("#Name").empty();
+                      $("#SelectDueNumberId").empty();
+
                       if (data.length > 0) {
+                          loanInstallements = data;
                           for (var i = 0; i < data.length; i++) {
                               var tempData = {};
-                              if (data[i].DueDate != null) { tempData.DueDate = DateConvertion(data[i].DueDate) } else tempData.DueDate = "";
+                              if (data[i].DueDate != null) { tempData.DueDate = data[i].DueDate; } else tempData.DueDate = "";
 
-                              $("#Name").val(data[i].Name.customerName)
-                              $("#Address").val(data[i].Name.customerAddress)
-                              $("#PhoneNo").val(data[i].Name.contactNo)
+                              $("#Name").val(data[i].Name)
+                              $("#Address").val(data[i].Address)
+                              $("#PhoneNo").val(data[i].PhoneNo)
                               $("#VechicleNumber").val(data[i].VechicleNumber)
                               $("#NumberOfInstallmentsId").val(data[i].NumberOfInstallments)
-                              $("#PrincipleAmount").val(data[i].PrincipleAmount)
-                              $("#IntrestAmount").val(data[i].IntrestAmount)
-                              $("#DueAmount").val(data[i].DueAmount)
-                              $("#DueDate").val(tempData.DueDate)
-                              $("#VechicleMake").val(data[i].VechicleMake);
-
-                              let amount = parseInt(data[i].IntrestAmount) + parseInt(data[i].DueAmount);
-                              $("#TotaldueAmount").val(amount);
-                              let interest = $('#CollectionDate').val();
-                              let latedays = Date(interest) - Date(tempData.DueDate);
-                              $("#LateDays").val(latedays);
+                              $("#SelectDueNumberId").append("<option value='" + data[i].SelectDueNumberId + "'>" + data[i].selectDueNumber + "</option >");
+                                                      
 
                           }
                       }
@@ -279,18 +327,7 @@
             }
         });
     };
-    function daysdifference(firstDate, secondDate) {
-        var startDay = new Date(firstDate);
-        var endDay = new Date(secondDate);
+       
+  
 
-        // Determine the time difference between two dates
-        var millisBetween = startDay.getTime() - endDay.getTime();
-
-        // Determine the number of days between two dates
-        var days = millisBetween / (1000 * 3600 * 24);
-
-        // Show the final number of days between dates
-        return Math.round(Math.abs(days));
-    }
-
-    </script>        
+</script>        

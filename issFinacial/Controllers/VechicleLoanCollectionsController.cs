@@ -38,7 +38,8 @@ namespace issFinacial.Controllers
         // GET: VechicleLoanCollections/Create
         public ActionResult Create()
         {
-            ViewBag.NumberOfInstallmentsId = new SelectList(db.Installments, "id", "numberofDue");
+            ViewBag.SelectDueNumberId = new SelectList(db.Installments, "id", "numberofDue");
+
             ViewBag.VehicleLoanId = new SelectList(db.VehicleLoanEntries, "id", "id");
             return View();
 
@@ -49,14 +50,19 @@ namespace issFinacial.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,CollectionDate,PaymentType,vehicleLoanId,LoanNumber,vehicleNo,Name,Address,PhoneNo,VehicleName,VechicleNumber,VehicleMake,NumberOfInstallments,SelectDueNumber,DueDate,PrincipleAmount,IntrestAmount,TotalAmount,LateDays,LateDaysAmount,Penalty,Discount,NetAmount")] VechicleLoanCollection vechicleLoanCollection)
+        public ActionResult Create([Bind(Include = "Id,CollectionDate,NumberOfInstallmentsId,SelectDueNumberId,PaymentType,vehicleLoanId,LoanNumber,vehicleNo,Name,Address,PhoneNo,VehicleName,VechicleNumber,VehicleMake,NumberOfInstallments,SelectDueNumber,DueDate,PrincipleAmount,IntrestAmount,TotalAmount,LateDays,LateDaysAmount,Penalty,Discount,NetAmount,DueStatus")] VechicleLoanCollection vechicleLoanCollection)
         {
             if (ModelState.IsValid)
             {
+
                 db.VechicleLoanCollection.Add(vechicleLoanCollection);
+                var installment = db.Installments.Where(x => x.id == vechicleLoanCollection.SelectDueNumberId).FirstOrDefault();
+                installment.dueStatus = "Paid";
+                db.Entry(installment).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.SelectDueNumberId = new SelectList(db.Installments, "id", "numberofDue", vechicleLoanCollection.SelectDueNumberId);
             ViewBag.VehicleLoanId = new SelectList(db.VehicleLoanEntries, "id", "id", vechicleLoanCollection.vehicleLoanId);
             return View(vechicleLoanCollection);
         }
@@ -65,22 +71,24 @@ namespace issFinacial.Controllers
         {
             if (NAME > 0)
             {
-                
+
                 var resp = (from loan in db.VehicleLoanEntries
                             join installment in db.Installments on loan.id equals installment.loanNumber
-                            where loan.id == NAME
+                            where loan.id == NAME && installment.dueStatus == "Pending"
                             select new
                             {
-                                id = installment.id,
-                                Name = loan.customerName,
+                                Id = installment.id,
+                                Name = loan.customerName.customerName,
                                 Address = loan.address,
                                 PhoneNo = loan.phoneNo,
                                 VechicleNumber = loan.vehicleNo,
                                 NumberOfInstallments = loan.numberOfInstallments,
                                 PrincipleAmount = loan.amountOfLoan,
-                                IntrestAmount = loan.amountOfIntrest,
-                                DueAmount = loan.dueAmount,
-                                DueDate = loan.dateOfDue,
+                                IntrestAmount = installment.Intrest,
+                                DueAmount = installment.dueAmount,
+                                DueDate = installment.DueDate,
+                                SelectDueNumberId = installment.id,
+                                selectDueNumber = installment.numberofDue
 
                                 //TotalAmount = Convert.ToInt32(loan.amountOfIntrest) + Convert.ToInt32(loan.dueAmount)
                                 //let amount = parseInt(loan.amountOfIntrest) + parseInt(loan.dueAmount);
@@ -104,6 +112,8 @@ namespace issFinacial.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.SelectDueNumberId = new SelectList(db.Installments, "id", "numberofDue", vechicleLoanCollection.SelectDueNumberId);
+
             ViewBag.VehicleLoanId = new SelectList(db.VehicleLoanEntries, "id", "id", vechicleLoanCollection.vehicleLoanId);
 
             return View(vechicleLoanCollection);
@@ -114,7 +124,7 @@ namespace issFinacial.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,CollectionDate,PaymentType,LoanNumber,Name,vehicleLoanId,Address,PhoneNo,VehicleName,VechicleNumber,VehicleMake,NumberOfInstallments,SelectDueNumber,DueDate,PrincipleAmount,IntrestAmount,TotalAmount,LateDays,LateDaysAmount,Penalty,Discount,NetAmount")] VechicleLoanCollection vechicleLoanCollection)
+        public ActionResult Edit([Bind(Include = "Id,CollectionDate,NumberOfInstallmentsId,SelectDueNumberId,PaymentType,LoanNumber,Name,vehicleLoanId,Address,PhoneNo,VehicleName,VechicleNumber,VehicleMake,NumberOfInstallments,SelectDueNumber,DueDate,PrincipleAmount,IntrestAmount,TotalAmount,LateDays,LateDaysAmount,Penalty,Discount,NetAmount,DueStatus")] VechicleLoanCollection vechicleLoanCollection)
         {
             if (ModelState.IsValid)
             {
@@ -122,6 +132,8 @@ namespace issFinacial.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.SelectDueNumberId = new SelectList(db.Installments, "id", "numberofDue", vechicleLoanCollection.SelectDueNumberId);
+
             ViewBag.VehicleLoanId = new SelectList(db.VehicleLoanEntries, "id", "id", vechicleLoanCollection.vehicleLoanId);
 
             return View(vechicleLoanCollection);
@@ -161,5 +173,21 @@ namespace issFinacial.Controllers
             }
             base.Dispose(disposing);
         }
+    }
+    public class LoanInstallmentDTO
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
+        public string PhoneNo { get; set; }
+        public string VechicleNumber { get; set; }
+        public string NumberOfInstallments { get; set; }
+        public string PrincipleAmount { get; set; }
+        public string IntrestAmount { get; set; }
+        public string DueAmount { get; set; }
+        public DateTime? DueDate { get; set; }
+        public string SelectDueNumberId { get; set; }
+
+
     }
 }

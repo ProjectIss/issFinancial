@@ -11,107 +11,107 @@ using issFinacial.Models;
 
 namespace issFinacial.Controllers
 {
-    public class AccountGroupingsController : Controller
+    public class TblMastersController : Controller
     {
         private issModel db = new issModel();
 
-        // GET: AccountGroupings
+        // GET: TblMasters
         public async Task<ActionResult> Index()
         {
-            return View(await db.AccountGroupings.ToListAsync());
+            return View(await db.TblMasters.ToListAsync());
         }
 
-        // GET: AccountGroupings/Details/5
+        // GET: TblMasters/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AccountGroup accountGrouping = await db.AccountGroupings.FindAsync(id);
-            if (accountGrouping == null)
+            TblMaster tblMaster = await db.TblMasters.FindAsync(id);
+            if (tblMaster == null)
             {
                 return HttpNotFound();
             }
-            return View(accountGrouping);
+            return View(tblMaster);
         }
 
-        // GET: AccountGroupings/Create
+        // GET: TblMasters/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: AccountGroupings/Create
+        // POST: TblMasters/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "id,accountGroup,parentGroup")] AccountGroup accountGrouping)
+        public async Task<ActionResult> Create([Bind(Include = "id,Edate,Paytype,AccID,GroupID,Des,Expenses,Income,UGroup,Type,FYear,CompanyName,User,ETime,DTime")] TblMaster tblMaster)
         {
             if (ModelState.IsValid)
             {
-                db.AccountGroupings.Add(accountGrouping);
+                db.TblMasters.Add(tblMaster);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(accountGrouping);
+            return View(tblMaster);
         }
 
-        // GET: AccountGroupings/Edit/5
+        // GET: TblMasters/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AccountGroup accountGrouping = await db.AccountGroupings.FindAsync(id);
-            if (accountGrouping == null)
+            TblMaster tblMaster = await db.TblMasters.FindAsync(id);
+            if (tblMaster == null)
             {
                 return HttpNotFound();
             }
-            return View(accountGrouping);
+            return View(tblMaster);
         }
 
-        // POST: AccountGroupings/Edit/5
+        // POST: TblMasters/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "id,accountGroup,parentGroup")] AccountGroup accountGrouping)
+        public async Task<ActionResult> Edit([Bind(Include = "id,Edate,Paytype,AccID,GroupID,Des,Expenses,Income,UGroup,Type,FYear,CompanyName,User,ETime,DTime")] TblMaster tblMaster)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(accountGrouping).State = EntityState.Modified;
+                db.Entry(tblMaster).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(accountGrouping);
+            return View(tblMaster);
         }
 
-        // GET: AccountGroupings/Delete/5
+        // GET: TblMasters/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AccountGroup accountGrouping = await db.AccountGroupings.FindAsync(id);
-            if (accountGrouping == null)
+            TblMaster tblMaster = await db.TblMasters.FindAsync(id);
+            if (tblMaster == null)
             {
                 return HttpNotFound();
             }
-            return View(accountGrouping);
+            return View(tblMaster);
         }
 
-        // POST: AccountGroupings/Delete/5
+        // POST: TblMasters/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            AccountGroup accountGrouping = await db.AccountGroupings.FindAsync(id);
-            db.AccountGroupings.Remove(accountGrouping);
+            TblMaster tblMaster = await db.TblMasters.FindAsync(id);
+            db.TblMasters.Remove(tblMaster);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

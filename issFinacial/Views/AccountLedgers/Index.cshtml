@@ -79,19 +79,26 @@
                         Account ID
 
                     </th>
-                    <th>
-                        Account Ledger
-                    </th>
-                    <th>
-                        Account Group
 
+                    <th>
+                        Account Name
                     </th>
+
+                    <th>
+                        Group Name
+                    </th>
+
                     <th>
                         Opening Balance
 
                     </th>
+
                     <th>
                         Type
+                    </th>
+
+                    <th>
+                        Account Group
 
                     </th>
                     <th></th>
@@ -104,16 +111,19 @@
                         @Html.DisplayFor(modelItem => item.id)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ledger)
+                        @Html.DisplayFor(modelItem => item.AccountName)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.accountgroupId)
+                        @Html.DisplayFor(modelItem => item.GroupName)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.openingBalance)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.accountgroupId)
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.id }) |

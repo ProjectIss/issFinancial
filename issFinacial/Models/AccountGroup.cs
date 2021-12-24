@@ -5,7 +5,7 @@ using System.Web;
 
 namespace issFinacial.Models
 {
-    public class AccountGrouping
+    public class AccountGroup
     {
         public int id { get; set; }
         public string accountGroup { get; set; }

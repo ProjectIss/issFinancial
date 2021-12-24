@@ -28,7 +28,7 @@ namespace issFinacial.Models
 
         public System.Data.Entity.DbSet<issFinacial.Models.AccountLedger> AccountLedgers { get; set; }
 
-        public System.Data.Entity.DbSet<issFinacial.Models.AccountGrouping> AccountGroupings{ get; set; }
+        public System.Data.Entity.DbSet<issFinacial.Models.AccountGroup> AccountGroupings{ get; set; }
   
 
         public System.Data.Entity.DbSet<issFinacial.Models.LoanEntry> LoanEntries { get; set; }
@@ -43,5 +43,7 @@ namespace issFinacial.Models
 
         public System.Data.Entity.DbSet<issFinacial.Models.Broker> Brokers { get; set; }
         public System.Data.Entity.DbSet<issFinacial.Models.VechicleLoanCollection> VechicleLoanCollection { get; set; }
+
+        public System.Data.Entity.DbSet<issFinacial.Models.TblMaster> TblMasters { get; set; }
     }
 }
