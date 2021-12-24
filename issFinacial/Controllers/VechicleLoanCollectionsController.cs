@@ -53,12 +53,22 @@ namespace issFinacial.Controllers
         public ActionResult Create([Bind(Include = "Id,CollectionDate,NumberOfInstallmentsId,SelectDueNumberId,PaymentType,vehicleLoanId,LoanNumber,vehicleNo,Name,Address,PhoneNo,VehicleName,VechicleNumber,VehicleMake,NumberOfInstallments,SelectDueNumber,DueDate,PrincipleAmount,IntrestAmount,TotalAmount,LateDays,LateDaysAmount,Penalty,Discount,NetAmount,DueStatus")] VechicleLoanCollection vechicleLoanCollection)
         {
             if (ModelState.IsValid)
-            {
-
+            {                
                 db.VechicleLoanCollection.Add(vechicleLoanCollection);
+                TblMaster tblMaster = new TblMaster();
+                tblMaster.id = vechicleLoanCollection.Id;
+                tblMaster.EntryDate = (DateTime)vechicleLoanCollection.CollectionDate;
+                tblMaster.PaymentType = vechicleLoanCollection.PaymentType;
+                tblMaster.Description = vechicleLoanCollection.Name;
+                tblMaster.Expenses = Convert.ToInt32(vechicleLoanCollection.PrincipleAmount);
+                tblMaster.Income = Convert.ToInt32(vechicleLoanCollection.NetAmount);
+                tblMaster.Type = "Vechicle Loan Collection";
+                tblMaster.FinancialYear = "2020-2021";
+              
                 var installment = db.Installments.Where(x => x.id == vechicleLoanCollection.SelectDueNumberId).FirstOrDefault();
                 installment.dueStatus = "Paid";
                 db.Entry(installment).State = EntityState.Modified;
+                db.TblMasters.Add(tblMaster);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

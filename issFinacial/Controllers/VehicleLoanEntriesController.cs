@@ -66,6 +66,18 @@ namespace issFinacial.Controllers
             if (ModelState.IsValid)
             {
                 db.VehicleLoanEntries.Add(vehicleLoanEntry);
+                TblMaster tblMaster = new TblMaster();
+                tblMaster.id = vehicleLoanEntry.id;
+                tblMaster.EntryDate = (DateTime)vehicleLoanEntry.dateofAgreement;
+                tblMaster.PaymentType = vehicleLoanEntry.paymentMode;
+                tblMaster.Description = vehicleLoanEntry.customerName.customerName;
+                tblMaster.Expenses = Convert.ToInt32(vehicleLoanEntry.amountOfLoan);
+                tblMaster.Income = 0;
+                tblMaster.UGroup = vehicleLoanEntry.;
+                tblMaster.Type = "Loan Entry";
+                tblMaster.FinancialYear = "2020-2021";
+                tblMaster.CompanyName = vehicleLoanEntry.Insurance.name;
+                db.TblMasters.Add(tblMaster);
                 await db.SaveChangesAsync();
                 int lastId = db.VehicleLoanEntries.Max(x => x.id);
                 int ins = !string.IsNullOrEmpty(vehicleLoanEntry.numberOfInstallments) ? Convert.ToInt32(vehicleLoanEntry.numberOfInstallments) : 0;

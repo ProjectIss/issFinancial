@@ -250,8 +250,8 @@
                                         <label>Payment Mode</label>
                                         @Html.DropDownList("advanceEmi", new List<SelectListItem>
                                         {
-                                            new SelectListItem{ Text="Cash", Value="Check"},
-                                            new SelectListItem{ Text="E-Transfer", Value="Check"}
+                                            new SelectListItem{ Text="Cash", Value="Cash"},
+                                            new SelectListItem{ Text="Credit Card", Value="Credit Card"}
                                         }, "--- Select ---", new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.paymentMode, "", new { @class = "text-danger" })
                                     </div>
