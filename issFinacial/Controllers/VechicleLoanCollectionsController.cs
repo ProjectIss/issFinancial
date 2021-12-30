@@ -59,12 +59,17 @@ namespace issFinacial.Controllers
                 tblMaster.id = vechicleLoanCollection.Id;
                 tblMaster.EntryDate = (DateTime)vechicleLoanCollection.CollectionDate;
                 tblMaster.PaymentType = vechicleLoanCollection.PaymentType;
+                tblMaster.AccountID = 33;
+                tblMaster.GroupID = 13;
+                tblMaster.UGroup = "12";
                 tblMaster.Description = vechicleLoanCollection.Name;
                 tblMaster.Expenses = Convert.ToInt32(vechicleLoanCollection.PrincipleAmount);
                 tblMaster.Income = Convert.ToInt32(vechicleLoanCollection.NetAmount);
                 tblMaster.Type = "Vechicle Loan Collection";
-                tblMaster.FinancialYear = "2020-2021";
-              
+                tblMaster.FinancialYear = "2020-2021";              
+                tblMaster.EntryTime = DateTime.Now;
+                tblMaster.DeleteTime = DateTime.Now;
+
                 var installment = db.Installments.Where(x => x.id == vechicleLoanCollection.SelectDueNumberId).FirstOrDefault();
                 installment.dueStatus = "Paid";
                 db.Entry(installment).State = EntityState.Modified;

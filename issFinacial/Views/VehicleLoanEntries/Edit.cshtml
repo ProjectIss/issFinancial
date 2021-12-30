@@ -283,16 +283,9 @@
                                 <div class="row">
                                     <div class="form-group col-md-4">
                                         <label>Payment Mode</label>
-                                        @Html.DropDownList("advanceEmi", new List<SelectListItem>
-                                        {
-                                            new SelectListItem{ Text="Cash", Value="Check"},
-                                            new SelectListItem{ Text="Cash", Value="Check"}
-                                        }, "--- Select ---", new { @class = "form-control" })
+                                        @Html.DropDownList("paymentMode", null, htmlAttributes: new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.paymentMode, "", new { @class = "text-danger" })
                                     </div>
-
-
-
                                     <div class="form-group col-md-4">
                                         <label>Check No</label>
                                         @Html.EditorFor(model => model.checkNo, new { htmlAttributes = new { @class = "form-control" } })

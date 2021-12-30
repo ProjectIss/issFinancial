@@ -84,21 +84,21 @@
                         <dl class="dl-horizontal">
                             <dt>
                                 <label>
-                                    Account ID
+                                    Account Name
                                 </label>
                             </dt>
 
                             <dd>
-                                @Html.DisplayFor(model => model.id)
+                                @Html.DisplayFor(model => model.AccountName)
                             </dd>
                             <dt>
                                 <label>
-                                    Account Ledger
+                                    Account GroupID
                                 </label>
                             </dt>
 
                             <dd>
-                                @Html.DisplayFor(model => model.ledger)
+                                @Html.DisplayFor(model => model.accountgroupId)
                             </dd>
 
                             <dt>
@@ -130,7 +130,15 @@
                             <dd>
                                 @Html.DisplayFor(model => model.type)
                             </dd>
+                            <dt>
+                                <label>
+                                    Group Name
+                                </label>
+                            </dt>
 
+                            <dd>
+                                @Html.DisplayFor(model => model.GroupName)
+                            </dd>
                         </dl>
 
 

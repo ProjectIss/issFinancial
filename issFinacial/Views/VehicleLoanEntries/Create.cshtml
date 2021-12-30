@@ -238,8 +238,8 @@
                                         <label>Advance EMI</label>
                                         @Html.DropDownList("advanceEmi", new List<SelectListItem>
                                         {
-                                            new SelectListItem{ Text="Yes", Value="No"},
-                                            new SelectListItem{ Text="yes", Value="No"}
+                                            new SelectListItem{ Text="Yes", Value="Yes"},
+                                            new SelectListItem{ Text="No", Value="No"}
                                         }, "--- Select ---", new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.advanceEmi, "", new { @class = "text-danger" })
                                     </div>
@@ -247,16 +247,13 @@
 
                                 <div class="row">
                                     <div class="form-group col-md-4">
-                                        <label>Payment Mode</label>
-                                        @Html.DropDownList("advanceEmi", new List<SelectListItem>
-                                        {
-                                            new SelectListItem{ Text="Cash", Value="Cash"},
-                                            new SelectListItem{ Text="Credit Card", Value="Credit Card"}
-                                        }, "--- Select ---", new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.paymentMode, "", new { @class = "text-danger" })
+                                        <label>Payment Mode</label>                        
+                                            @Html.DropDownList("paymentMode", null, htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.paymentMode, "", new { @class = "text-danger" })
+                                        </div>                                      
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label>Check No</label>
+                                        <label>Cheque No</label>
                                         @Html.EditorFor(model => model.checkNo, new { htmlAttributes = new { @class = "form-control" } })
                                         @Html.ValidationMessageFor(model => model.checkNo, "", new { @class = "text-danger" })
                                     </div>
@@ -365,7 +362,7 @@
                                         @Html.ValidationMessageFor(model => model.premiumAmount, "", new { @class = "text-danger" })
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label>Insured No</label>
+                                        <label>Insured On</label>
                                         @Html.TextBoxFor(m => m.insuredNo, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
                                     </div>
                                     <div class="form-group col-md-4">
@@ -515,8 +512,7 @@
                         <button type="submit" value="Create" class="btn btn-success">Submit</button>
                         @Html.ActionLink("Cancel", "Index", null, htmlAttributes: new { @class = "btn btn-primary" })
                     </div>
-                </div>
-            </div>
+                </div>          
 
         }
     </div>
@@ -534,14 +530,14 @@
             let permonth = 1;
             let amount1 = $("#Amount").val();
             let dayscount = 30;
-            //let amount2 = parseInt(amount1) + parseInt(interest) * parseInt(amount1) + (parseInt(dayscount) * (perday / 100));
+            //let amount2 = parseInt(amount1) - parseInt(interest) * parseInt(amount1) + (parseInt(dayscount) * (perday / 100));
             let apr = (amount1 * interest / 100) / 12;
             $("#amountOfIntrest").val(apr);
             let due = amount1 / Installments;
             $("#dueAmount").val(due);
             let lone = apr + due;
             $("#totalDueAmount").val(lone);
-            let totalamount = parseInt(amount1) + parseInt(document) + parseInt(commision) + (apr * parseInt(Installments));
+            let totalamount = parseInt(amount1) - parseInt(document) - parseInt(commision);
             $("#totalAmount").val(totalamount);
         
     

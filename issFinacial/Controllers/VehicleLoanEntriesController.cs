@@ -53,6 +53,22 @@ namespace issFinacial.Controllers
             ViewBag.InsuranceId = new SelectList(db.InsuranceCompanies, "id", "name");
             ViewBag.shareHolderId = new SelectList(db.Shareholders, "id", "name");
             ViewBag.VehicleId = new SelectList(db.Vehicles, "id", "name");
+            //  ViewBag.paymentMode = new SelectList(db.AccountGroupings, "id", "accountGroup");
+            var grouplist = (from account in db.AccountGroupings
+                             join ledger in db.AccountLedgers on account.id equals ledger.accountgroupId
+                             where account.accountGroup == "Cash-in-hand"
+                             || account.accountGroup == "Bank Accounts"
+                             select new
+                             {
+                                 Id = ledger.id,
+                                 Name = ledger.AccountName
+                             }).ToList();
+            List<SelectListItem> payment = new List<SelectListItem>();
+            foreach (var item in grouplist)
+            {
+                payment.Add(new SelectListItem { Text = item.Name, Value = item.Id.ToString() });
+            }
+            ViewBag.paymentMode = payment;//new SelectList(db.AccountLedgers.Where(x => x.accountgroupId ==  || x.accountgroupId == Bank Accounts).ToList(), "id", "accountGroup");
             return View();
         }
 
@@ -67,17 +83,112 @@ namespace issFinacial.Controllers
             {
                 db.VehicleLoanEntries.Add(vehicleLoanEntry);
                 TblMaster tblMaster = new TblMaster();
-                tblMaster.id = vehicleLoanEntry.id;
+                //tblMaster.id = vehicleLoanEntry.id;
                 tblMaster.EntryDate = (DateTime)vehicleLoanEntry.dateofAgreement;
+                tblMaster.AccountID = 33;
+                tblMaster.GroupID = 13;
+                tblMaster.UGroup = "12";
                 tblMaster.PaymentType = vehicleLoanEntry.paymentMode;
-                tblMaster.Description = vehicleLoanEntry.customerName.customerName;
+                if (vehicleLoanEntry.customerId != 0)
+                {
+                    var cName = db.Customers.Where(x => x.id == vehicleLoanEntry.customerNameId).FirstOrDefault();
+                    tblMaster.Description = cName.customerName;
+                }
                 tblMaster.Expenses = Convert.ToInt32(vehicleLoanEntry.amountOfLoan);
                 tblMaster.Income = 0;
-                tblMaster.UGroup = vehicleLoanEntry.;
                 tblMaster.Type = "Loan Entry";
                 tblMaster.FinancialYear = "2020-2021";
-                tblMaster.CompanyName = vehicleLoanEntry.Insurance.name;
+                if (vehicleLoanEntry.InsuranceId != 0)
+                {
+                    var Insure = db.InsuranceCompanies.Where(x => x.id == vehicleLoanEntry.InsuranceId).FirstOrDefault();
+                    tblMaster.CompanyName = Insure.name;
+                }
+
+                tblMaster.EntryTime = DateTime.UtcNow;
+                tblMaster.DeleteTime = DateTime.UtcNow;
                 db.TblMasters.Add(tblMaster);
+                await db.SaveChangesAsync();
+                //////////////////////////////////////////////Document charge////////////////////
+                TblMaster document = new TblMaster();
+                //tblMaster.id = vehicleLoanEntry.id;
+                document.EntryDate = (DateTime)vehicleLoanEntry.dateofAgreement;
+                document.AccountID = 44;
+                document.GroupID = 11;
+                document.UGroup = "10";
+                document.PaymentType = vehicleLoanEntry.paymentMode;
+                if (vehicleLoanEntry.customerId != 0)
+                {
+                    var cName = db.Customers.Where(x => x.id == vehicleLoanEntry.customerNameId).FirstOrDefault();
+                    document.Description = cName.customerName;
+                }
+                document.Expenses = 0;
+                document.Income = Convert.ToInt32(vehicleLoanEntry.documentAmount);
+                document.Type = "Loan Entry";
+                document.FinancialYear = "2020-2021";
+                if (vehicleLoanEntry.InsuranceId != 0)
+                {
+                    var Insure = db.InsuranceCompanies.Where(x => x.id == vehicleLoanEntry.InsuranceId).FirstOrDefault();
+                    document.CompanyName = Insure.name;
+                }
+
+                document.EntryTime = DateTime.UtcNow;
+                document.DeleteTime = DateTime.UtcNow;
+                db.TblMasters.Add(document);
+                await db.SaveChangesAsync();
+                ///////////////////////////////Commission Amount///////////
+                TblMaster commision = new TblMaster();
+                //tblMaster.id = vehicleLoanEntry.id;
+                commision.EntryDate = (DateTime)vehicleLoanEntry.dateofAgreement;
+                commision.AccountID = 34;
+                commision.GroupID = 11;
+                commision.UGroup = "10";
+                commision.PaymentType = vehicleLoanEntry.paymentMode;
+                if (vehicleLoanEntry.customerId != 0)
+                {
+                    var cName = db.Customers.Where(x => x.id == vehicleLoanEntry.customerNameId).FirstOrDefault();
+                    commision.Description = cName.customerName;
+                }
+                commision.Expenses = 0;
+                commision.Income = Convert.ToInt32(vehicleLoanEntry.commisionAmount);
+                commision.Type = "Loan Entry";
+                commision.FinancialYear = "2020-2021";
+                if (vehicleLoanEntry.InsuranceId != 0)
+                {
+                    var Insure = db.InsuranceCompanies.Where(x => x.id == vehicleLoanEntry.InsuranceId).FirstOrDefault();
+                    commision.CompanyName = Insure.name;
+                }
+
+                commision.EntryTime = DateTime.UtcNow;
+                commision.DeleteTime = DateTime.UtcNow;
+                db.TblMasters.Add(commision);
+                await db.SaveChangesAsync();
+                /////////////////////Intrest Amount///////////
+                TblMaster intrest = new TblMaster();
+                //tblMaster.id = vehicleLoanEntry.id;
+                intrest.EntryDate = (DateTime)vehicleLoanEntry.dateofAgreement;
+                intrest.AccountID = 43;
+                intrest.GroupID = 11;
+                intrest.UGroup = "10";
+                intrest.PaymentType = vehicleLoanEntry.paymentMode;
+                if (vehicleLoanEntry.customerId != 0)
+                {
+                    var cName = db.Customers.Where(x => x.id == vehicleLoanEntry.customerNameId).FirstOrDefault();
+                    intrest.Description = cName.customerName;
+                }
+                intrest.Expenses = 0;
+                intrest.Income = Convert.ToInt32(vehicleLoanEntry.amountOfIntrest);
+                intrest.Type = "Loan Entry";
+                intrest.FinancialYear = "2020-2021";
+                if (vehicleLoanEntry.InsuranceId != 0)
+                {
+                    var Insure = db.InsuranceCompanies.Where(x => x.id == vehicleLoanEntry.InsuranceId).FirstOrDefault();
+                    intrest.CompanyName = Insure.name;
+                }
+
+                intrest.EntryTime = DateTime.UtcNow;
+                intrest.DeleteTime = DateTime.UtcNow;
+                db.TblMasters.Add(intrest);
+                //ending ///
                 await db.SaveChangesAsync();
                 int lastId = db.VehicleLoanEntries.Max(x => x.id);
                 int ins = !string.IsNullOrEmpty(vehicleLoanEntry.numberOfInstallments) ? Convert.ToInt32(vehicleLoanEntry.numberOfInstallments) : 0;
@@ -125,8 +236,8 @@ namespace issFinacial.Controllers
                         {
                             if (i <= ins)
                             {
-                                
-                                loanamount = loanamount - Dueamount ;
+
+                                loanamount = loanamount - Dueamount;
                                 Instrest = (loanamount * instrestofAmount / 100) / 12;
                             }
                             totalAmount = loanamount;
@@ -159,6 +270,7 @@ namespace issFinacial.Controllers
             ViewBag.InsuranceId = new SelectList(db.InsuranceCompanies, "id", "name", vehicleLoanEntry.InsuranceId);
             ViewBag.shareHolderId = new SelectList(db.Shareholders, "id", "name", vehicleLoanEntry.shareHolderId);
             ViewBag.VehicleId = new SelectList(db.Vehicles, "id", "name", vehicleLoanEntry.VehicleId);
+            ViewBag.paymentMode = new SelectList(db.AccountGroupings, "id", "accountGroup");
             return View(vehicleLoanEntry);
         }
         [HttpPost]
@@ -193,6 +305,7 @@ namespace issFinacial.Controllers
             ViewBag.InsuranceId = new SelectList(db.InsuranceCompanies, "id", "name", vehicleLoanEntry.InsuranceId);
             ViewBag.shareHolderId = new SelectList(db.Shareholders, "id", "name", vehicleLoanEntry.shareHolderId);
             ViewBag.VehicleId = new SelectList(db.Vehicles, "id", "name", vehicleLoanEntry.VehicleId);
+            ViewBag.paymentMode = new SelectList(db.AccountGroupings, "id", "accountGroup");
             return View(vehicleLoanEntry);
         }
 
@@ -218,6 +331,7 @@ namespace issFinacial.Controllers
             ViewBag.InsuranceId = new SelectList(db.InsuranceCompanies, "id", "name", vehicleLoanEntry.InsuranceId);
             ViewBag.shareHolderId = new SelectList(db.Shareholders, "id", "name", vehicleLoanEntry.shareHolderId);
             ViewBag.VehicleId = new SelectList(db.Vehicles, "id", "name", vehicleLoanEntry.VehicleId);
+            ViewBag.paymentMode = new SelectList(db.AccountGroupings, "id", "accountGroup");
             return View(vehicleLoanEntry);
         }
 
