@@ -24,7 +24,7 @@ namespace issFinacial.Controllers
         }
 
         // GET: ReceiptEntries/Details/5
-        public async Task<ActionResult> Details(string id)
+        public async Task<ActionResult> Details(int id)
         {
             if (id == null)
             {
@@ -62,12 +62,13 @@ namespace issFinacial.Controllers
         }
 
         // GET: ReceiptEntries/Edit/5
-        public async Task<ActionResult> Edit(string id)
+        public async Task<ActionResult> Edit(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            //int a = Convert.ToInt32(id);
             ReceiptEntry receiptEntry = await db.ReceiptEntries.FindAsync(id);
             if (receiptEntry == null)
             {

@@ -49,12 +49,27 @@ namespace issFinacial.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "id,code,name,fatherName,address,areaName,identityproof,loanDate,billNo,sNo,itemName,itemType,gramValue,queality,grossWeight,netWeight,itemValue,totalGrams,value,principle,intrest,intrestAmount,deducation")] LoanEntry loanEntry)
+        public async Task<ActionResult> Create([Bind(Include = "id,code,name,f" +
+            "atherName,address,areaName,identityproof,loanDate,billNo,sNo,itemName,itemType,gramValue,queality,grossWeight,netWeight,itemValue,totalGrams,value,principle,intrest,intrestAmount,deducation")] LoanEntry loanEntry)
         {
             if (ModelState.IsValid)
             {
                 db.LoanEntries.Add(loanEntry);
                 await db.SaveChangesAsync();
+                int le = !string.IsNullOrEmpty(loanEntry.principle) ? Convert.ToInt32(loanEntry.principle) : 0;
+
+                for (int i = 1; i < le; i++)
+                {
+                    Installment objInstall = new Installment();
+                    objInstall.Intrest = loanEntry.itemValue;
+                    objInstall.loanNumber = 1;
+                    objInstall.numberofDue = i.ToString();
+                    objInstall.dueStatus = "Pending";
+                    objInstall.DueDate = DateTime.Now.AddDays(28).ToString();
+                    db.Installments.Add(objInstall);
+
+                }
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 

@@ -1,0 +1,240 @@
+﻿@{
+    ViewBag.Title = "InstallmentSchedule";
+}
+
+<style type="text/css">
+    .row {
+        margin-top: 1%;
+    }
+
+    .cardBody {
+        /*height: 600px;*/
+        padding: 5%;
+    }
+
+    tr {
+        border: none;
+    }
+
+    .columns {
+        border: 1px solid !important;
+        padding: 8px;
+    }
+
+    .btn-default {
+        background-color: cadetblue;
+        float: right;
+    }
+</style>
+<style>
+    table {
+       
+        border-width: 150px;
+        border-color: #8ebf42;
+       
+    }
+
+
+
+    td {
+        border: 2px solid #000000;
+    }
+</style>
+
+<div class="card">
+
+    <div class="content-wrapper-before blue-grey lighten-5"></div>
+    <div class="col s12">
+
+        <div class="card cardBody" style="overflow:auto">
+            <div class="col s1 card card-header info">
+                <select name="id" id="id" class="form-control col-xl-10" required>
+                    <option value="">-Select -Loan Number</option>
+                    @foreach (var item in ViewBag.customer)
+                    {
+                        <option value="@item.Value">@item.Text </option>
+                    }
+                </select>
+            </div>
+           
+
+            @*<h6><center><b>GOODS RECEIPT NOTE</u></b>   </center></h6>*@
+
+            <div class="card">
+                <button class="btn waves-effect waves-light " id="print" style="float:right;margin-top:0%">
+                    Print
+
+                </button>
+            </div>
+
+            <div class="container">
+                <h5 style="text-align: center">Installment Schedule</h5>
+                <hr />
+            </div>
+            <table id="RawContent">
+                <tr style="border:1px solid;border-bottom:none">
+                    <th colspan="1">Ref.No.</th>
+                    <th>:</th>
+                    <th id="refno"></th>
+                    <th></th>
+                    <th colspan="1">Guarantor Name</th>
+                    <th>:</th>
+                    <th id="guarantorname"></th>
+
+                </tr>
+                <tr style="border-left:1px solid">
+                    <th colspan="1">Name</th>
+                    <th>:</th>
+                    <th id="name"></th>
+                    <th></th>
+                    <th>Address</th>
+                    <th>:</th>
+                    <th style="border-right:1px solid" id="gaddress"></th>
+                </tr>
+                <tr style="border-left:1px solid">
+                    <th colspan="1">Father's Name</th>
+                    <th>:</th>
+                    <th id="fathername"></th>
+                    <th></th>
+                    <th>Phone Number</th>
+                    <th>:</th>
+                    <th style="border-right:1px solid" id="gphonenumber"></th>
+                </tr>
+                <tr style="border-left:1px solid">
+                    <th colspan="1">Address</th>
+                    <th>:</th>
+                    <th id="faddress"></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th style="border-right:1px solid"></th>
+
+                </tr>
+                <tr style="border-left:1px solid">
+                    <th colspan="1"></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>Loan Amount</th>
+                    <th>:</th>
+                    <th style="border-right:1px solid" id="loanAmount"></th>
+                </tr>
+                <tr style="border-left:1px solid">
+                    <th colspan="1">Phone Number</th>
+                    <th>:</th>
+                    <th id="fphonenumber"></th>
+                    <th></th>
+                    <th>Agreement Charge</th>
+                    <th>:</th>
+                    <th style="border-right:1px solid" id="agreementamount"></th>
+                </tr>
+                <tr style="border-left:1px solid">
+                    <th colspan="1">Broker Name</th>
+                    <th>:</th>
+                    <th id="brokername"></th>
+                    <th></th>
+                    <th>Broker Amount</th>
+                    <th>:</th>
+                    <th style="border-right:1px solid" id="Brokeramount"></th>
+                </tr>
+            </table>
+            <br />
+
+            <table id="Installment">
+                <thead>
+                    <tr>
+                        <th class="columns">S.No</th>
+                        <th class="columns">Due Date</th>
+                        <th class="columns">Amount</th>
+                        <th class="columns">Int.Amount</th>
+                        <th class="columns">Total Amt</th>
+                        <th class="columns">Recieved On</th>
+                        <th class="columns">Recieved Amt</th>
+                        <th class="columns">Balance Amt</th>
+                        @*<th id="total">@ViewBag.total</th>*@
+                    </tr>
+                </thead>
+                <tbody id="tblInstallment"></tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+<script>
+    $(function () {
+        //loadData();
+        let id = 0;
+        $('#print').click(function () {
+            $('#header').hide();
+            $(this).hide();
+            $('#settings').hide();
+            $('#Sidemenus').hide();
+            $('footer').hide();
+            window.print();
+            $('#header').show();
+            $('#settings').show();
+            $('#Sidemenus').show();
+            $(this).show();
+            $('footer').show();
+        });
+
+    });
+        $('#id').change(function () {
+             id = $(this).val()
+            getDetail(id); 
+    });
+   
+    function getDetail(id, phoneNo) {
+        //$('#total').empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Content("~/Report/getloandetail")',
+                dataType: 'json',
+                data: { Id: id, phoneNo: phoneNo},
+                success: function (data) {
+                    debugger
+                    console.log(data);
+                    var row;
+                    //let total = 0;
+                    if (data.installment.length > 0) {
+                        for (var i = 0; i < data.installment.length; i++) {
+                            //var tempdata = {};
+                            //if (data.installment[i].DueDate) { tempdata.DueDate = DateConvertion(data.installment[i].DueDate) } else tempdata.DueDate = "";
+
+                            row = '<tr>'
+                             + '<td>' + data.installment[i].numberofDue + '</td>'
+                             + '<td>' + data.installment[i].DueDate + '</td>'
+                                + '<td>' + data.installment[i].dueAmount + '</td>'
+                             + '<td>' + data.installment[i].Intrest + '</td>'
+                                + '<td>' + data.installment[i].totalAmount + '</td>'
+                             + "</tr>";
+                            $('#tblInstallment').append(row);
+                        }
+
+
+                        $('#totalAmount').append(data.loanDetail.totalAmount);
+                        $('#refno').append(data.loanDetail.id);
+                        $('#name').append(data.loanDetail.Customer.customerName);
+                        $('#gaddress').append(data.loanDetail.guardianAddress);
+                        $('#guarantorname').append(data.loanDetail.guardianName);
+                        $('#fathername').append(data.loanDetail.fatherName);
+                        $('#gphonenumber').append(data.loanDetail.guardianPhoneNo);
+                        $('#faddress').append(data.loanDetail.address);
+                        $('#loanAmount').append(data.loanDetail.amountOfLoan);
+                        $('#fphonenumber').append(data.loanDetail.Customer.contactNo);
+                        $('#brokername').append(data.loanDetail.broker.name);
+                        $('#agreementamount').append(data.loanDetail.documentAmount);
+                        $('#Brokeramount').append(data.loanDetail.commisionAmount);
+                    }
+               },
+            });
+        }
+
+
+
+
+
+</script>
+

@@ -12,8 +12,6 @@ namespace issFinacial.Models
         public virtual Shareholder shareHoldere { get; set; }
         public int customerId { get; set; }
         public virtual Customer Customer { get; set; }
-
-
         public int customerNameId { get; set; }
         public virtual Customer customerName { get; set; }
         public string fatherName { get; set; }
@@ -28,9 +26,6 @@ namespace issFinacial.Models
         public virtual Broker broker { get; set; }
         public int brokerNameId { get; set; }
         public virtual Broker brokerName { get; set; }
-
-
-
         public string brokerAddress { get; set; }
         public string brokerPhoneNo { get; set; }
         public int areaId { get; set; }
@@ -45,17 +40,12 @@ namespace issFinacial.Models
 
         public string paymentMode { get; set; }
         public string checkNo { get; set; }
-       
-
-
-
-
-
         public string amountOfLoan { get; set; }
         public string rateOfIntrestperentage { get; set; }
         public string numberOfInstallments { get; set; }
         public string amountOfIntrest { get; set; }
-        public string totalloanAmount { get; set; }
+        public string totalDueAmount { get; set; }
+        public string totalAmount { get; set; }
         public string dueAmount { get; set; }
         public string documentAmount { get; set; }
         public string commisionAmount { get; set; }
@@ -90,7 +80,7 @@ namespace issFinacial.Models
         public DateTime? fcExpiryDate { get; set; }
 
         public DateTime? insuranceExpityDate { get; set; }
-
+        public int typeOfLoan { get; set; }
 
 
     }

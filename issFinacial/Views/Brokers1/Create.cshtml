@@ -80,6 +80,11 @@
                 <div class="form-horizontal">
 
                     <div class="form-group">
+                        <div class="col-md-10">
+                            <label>Broker Id</label>
+                            @Html.EditorFor(model => model.siNo, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.siNo, "", new { @class = "text-danger" })
+                        </div>
 
                         <div class="col-md-10">
                             @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Name" } })

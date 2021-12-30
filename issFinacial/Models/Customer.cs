@@ -8,6 +8,8 @@ namespace issFinacial.Models
     public class Customer
     {
         public int id { get; set; }
+        public int Age { get; set; }
+        public String FatherName { get; set; }
         public string siNo { get; set; }
         public string customerNameTamil { get; set; }
         public string customerName { get; set; }

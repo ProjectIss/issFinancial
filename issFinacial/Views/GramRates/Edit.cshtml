@@ -87,14 +87,14 @@
                     <div class="form-group">
 
                         <div class="col-md-10">
+                            <label>Gram Rate</label>
                             @Html.EditorFor(model => model.gramRate, new { htmlAttributes = new { @class = "form-control", @placeholder = "Gram Rate" } })
                             @Html.ValidationMessageFor(model => model.gramRate, "", new { @class = "text-danger" })
                         </div>
                     </div>
-
                     <div class="form-group">
-
                         <div class="col-md-10">
+                            <label>Item Type</label>
                             @Html.EditorFor(model => model.itemType, new { htmlAttributes = new { @class = "form-control", @placeholder = "Item Type" } })
                             @Html.ValidationMessageFor(model => model.itemType, "", new { @class = "text-danger" })
                         </div>

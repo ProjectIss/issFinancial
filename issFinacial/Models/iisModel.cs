@@ -22,12 +22,13 @@ namespace issFinacial.Models
         public System.Data.Entity.DbSet<issFinacial.Models.Agent> Agents { get; set; }
 
         public System.Data.Entity.DbSet<issFinacial.Models.Area> Areas { get; set; }
+        public System.Data.Entity.DbSet<issFinacial.Models.Installment> Installments { get; set; }
 
         public System.Data.Entity.DbSet<issFinacial.Models.InsuranceCompany> InsuranceCompanies { get; set; }
 
         public System.Data.Entity.DbSet<issFinacial.Models.AccountLedger> AccountLedgers { get; set; }
 
-        public System.Data.Entity.DbSet<issFinacial.Models.AccountGrouping> AccountGroupings{ get; set; }
+        public System.Data.Entity.DbSet<issFinacial.Models.AccountGroup> AccountGroupings{ get; set; }
   
 
         public System.Data.Entity.DbSet<issFinacial.Models.LoanEntry> LoanEntries { get; set; }
@@ -41,5 +42,8 @@ namespace issFinacial.Models
         public System.Data.Entity.DbSet<issFinacial.Models.VehicleLoanEntry> VehicleLoanEntries { get; set; }
 
         public System.Data.Entity.DbSet<issFinacial.Models.Broker> Brokers { get; set; }
+        public System.Data.Entity.DbSet<issFinacial.Models.VechicleLoanCollection> VechicleLoanCollection { get; set; }
+
+        public System.Data.Entity.DbSet<issFinacial.Models.TblMaster> TblMasters { get; set; }
     }
 }

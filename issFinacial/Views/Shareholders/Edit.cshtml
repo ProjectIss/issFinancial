@@ -80,38 +80,33 @@
 
 
                     <div class="form-group">
-
                         <div class="col-md-10">
+                            <label>Name</label>
                             @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Name" } })
                             @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
                         </div>
                     </div>
-
                     <div class="form-group">
-
                         <div class="col-md-10">
+                            <label>Address</label>
                             @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control", @placeholder = "Address" } })
                             @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
                         </div>
                     </div>
-
                     <div class="form-group">
-
                         <div class="col-md-10">
+                            <label>Phone Number</label>
                             @Html.EditorFor(model => model.phoneNo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Phone No" } })
                             @Html.ValidationMessageFor(model => model.phoneNo, "", new { @class = "text-danger" })
                         </div>
                     </div>
-
                     <div class="form-group col-md-4">
                         <label>Date</label>
                         @Html.TextBoxFor(m => m.date, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
-
                     </div>
-
                     <div class="form-group">
-
                         <div class="col-md-10">
+                            <label>Amount</label>
                             @Html.EditorFor(model => model.amount, new { htmlAttributes = new { @class = "form-control", @placeholder = "Amount" } })
                             @Html.ValidationMessageFor(model => model.amount, "", new { @class = "text-danger" })
                         </div>

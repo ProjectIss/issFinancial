@@ -50,7 +50,7 @@ namespace issFinacial.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,siNo,customerName,customerRelation,customerAddress,permanantAddress,areaNameEnglishId,contactNo,introduceName,identityProof,identityNumber,customerType,dateofJoin,nomineeName,nomineeAddress,nomineeNumber,starRate,remark,thump,memberImage,itemImage,nomineeImage,memberSignatureImage,nomineeSignatureImage")] Customer customer)
+        public ActionResult Create([Bind(Include = "id,siNo,customerName,FatherName,Age,customerRelation,customerAddress,permanantAddress,areaNameEnglishId,contactNo,introduceName,identityProof,identityNumber,customerType,dateofJoin,nomineeName,nomineeAddress,nomineeNumber,starRate,remark,thump,memberImage,itemImage,nomineeImage,memberSignatureImage,nomineeSignatureImage")] Customer customer)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace issFinacial.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,siNo,customerName,customerRelation,customerAddress,permanantAddress,areaNameEnglishId,contactNo,introduceName,identityProof,identityNumber,customerType,dateofJoin,nomineeName,nomineeAddress,nomineeNumber,starRate,remark,thump,memberImage,itemImage,nomineeImage,memberSignatureImage,nomineeSignatureImage")] Customer customer)
+        public ActionResult Edit([Bind(Include = "id,siNo,customerName,FatherName,Age,customerRelation,customerAddress,permanantAddress,areaNameEnglishId,contactNo,introduceName,identityProof,identityNumber,customerType,dateofJoin,nomineeName,nomineeAddress,nomineeNumber,starRate,remark,thump,memberImage,itemImage,nomineeImage,memberSignatureImage,nomineeSignatureImage")] Customer customer)
         {
             if (ModelState.IsValid)
             {

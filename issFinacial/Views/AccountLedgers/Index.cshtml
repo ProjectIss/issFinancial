@@ -30,7 +30,7 @@
     <div class="breadcrumb-line breadcrumb-line-light header-elements-lg-inline">
         <div class="d-flex">
             <div class="breadcrumb">
-                <a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Dashboard</a>
+                <a href="~/home/Index" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Dashboard</a>
                 <span class="breadcrumb-item active">Account Ledger</span>
             </div>
             <a href="#" class="header-elements-toggle text-body d-lg-none"><i class="icon-more"></i></a>
@@ -79,19 +79,26 @@
                         Account ID
 
                     </th>
-                    <th>
-                        Account Ledger
-                    </th>
-                    <th>
-                        Account Group
 
+                    <th>
+                        Account Name
                     </th>
+
+                    <th>
+                        Group Name
+                    </th>
+
                     <th>
                         Opening Balance
 
                     </th>
+
                     <th>
                         Type
+                    </th>
+
+                    <th>
+                        Account Group
 
                     </th>
                     <th></th>
@@ -104,16 +111,19 @@
                         @Html.DisplayFor(modelItem => item.id)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ledger)
+                        @Html.DisplayFor(modelItem => item.AccountName)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.accountgroupId)
+                        @Html.DisplayFor(modelItem => item.GroupName)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.openingBalance)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.accountgroupId)
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.id }) |

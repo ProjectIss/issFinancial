@@ -28,7 +28,7 @@ namespace issFinacial.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AccountGrouping accountGrouping = await db.AccountGroupings.FindAsync(id);
+            AccountGroup accountGrouping = await db.AccountGroupings.FindAsync(id);
             if (accountGrouping == null)
             {
                 return HttpNotFound();
@@ -47,7 +47,7 @@ namespace issFinacial.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "id,accountGroup,parentGroup")] AccountGrouping accountGrouping)
+        public async Task<ActionResult> Create([Bind(Include = "id,accountGroup,parentGroup")] AccountGroup accountGrouping)
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +66,7 @@ namespace issFinacial.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AccountGrouping accountGrouping = await db.AccountGroupings.FindAsync(id);
+            AccountGroup accountGrouping = await db.AccountGroupings.FindAsync(id);
             if (accountGrouping == null)
             {
                 return HttpNotFound();
@@ -79,7 +79,7 @@ namespace issFinacial.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "id,accountGroup,parentGroup")] AccountGrouping accountGrouping)
+        public async Task<ActionResult> Edit([Bind(Include = "id,accountGroup,parentGroup")] AccountGroup accountGrouping)
         {
             if (ModelState.IsValid)
             {
@@ -97,7 +97,7 @@ namespace issFinacial.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AccountGrouping accountGrouping = await db.AccountGroupings.FindAsync(id);
+            AccountGroup accountGrouping = await db.AccountGroupings.FindAsync(id);
             if (accountGrouping == null)
             {
                 return HttpNotFound();
@@ -110,7 +110,7 @@ namespace issFinacial.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            AccountGrouping accountGrouping = await db.AccountGroupings.FindAsync(id);
+            AccountGroup accountGrouping = await db.AccountGroupings.FindAsync(id);
             db.AccountGroupings.Remove(accountGrouping);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");

@@ -80,34 +80,26 @@
                     <div class="form-group">
 
                         <div class="col-md-10">
+                            <label>Item Code</label>
                             @Html.EditorFor(model => model.id, new { htmlAttributes = new { @class = "form-control", @placeholder = "Item Code" } })
                             @Html.ValidationMessageFor(model => model.id, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="form-group">
-
                         <div class="col-md-10">
+                            <label>Item Name</label>
                             @Html.EditorFor(model => model.itemName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Item Name" } })
                             @Html.ValidationMessageFor(model => model.itemName, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
-                    @*<div class="form-group">
-
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.itemNameTamil, new { htmlAttributes = new { @class = "form-control", @placeholder = "Item Name Tamil" } })
-                                @Html.ValidationMessageFor(model => model.itemNameTamil, "", new { @class = "text-danger" })
-                            </div>
-                        </div>*@
-
                     <div class="form-group">
-
                         <div class="col-md-10">
+                            <label>Item Type</label>
                             @Html.EditorFor(model => model.itemType, new { htmlAttributes = new { @class = "form-control", @placeholder = "Item Type" } })
                             @Html.ValidationMessageFor(model => model.itemType, "", new { @class = "text-danger" })
                         </div>
                     </div>
-
                     <div class="text-right">
                         <button type="submit" value="Edit" class="btn btn-success">Submit</button>
                         @Html.ActionLink("Cancel", "Index", null, htmlAttributes: new { @class = "btn btn-primary" })
